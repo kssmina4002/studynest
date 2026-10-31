@@ -1,0 +1,10 @@
+
+# Environment variables and private credentials
+.env
+.env.*
+!.env.example
+
+# Dependencies and generated files
+node_modules/
+*.log
+.DS_Store

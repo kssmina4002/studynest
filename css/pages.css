@@ -1,0 +1,456 @@
+/* ============================================================
+   StudyNest — Inner Pages Styles (Dark Theme)
+   ============================================================ */
+
+/* --- Toolbar / Search (Tasks Page) --- */
+.toolbar { 
+  padding: 32px; 
+  background: var(--bg-card); 
+  border-radius: 24px; 
+  border: 1px solid var(--border); 
+  margin-bottom: 32px; 
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+.search-filter-row { 
+  display: flex; 
+  gap: 20px; 
+  align-items: center; 
+  margin-bottom: 24px; 
+  flex-wrap: wrap; 
+}
+.search-wrap { 
+  flex: 1; 
+  position: relative; 
+  display: flex; 
+  align-items: center; 
+  min-width: 300px; 
+}
+.search-wrap .icon { 
+  position: absolute; 
+  left: 20px; 
+  width: 22px; 
+  height: 22px; 
+  color: var(--text-muted); 
+}
+.search-wrap input { 
+  width: 100%; 
+  padding: 18px 20px 18px 56px; 
+  border: 1px solid var(--border); 
+  border-radius: 16px; 
+  font-family: var(--font-body); 
+  font-size: 16px; 
+  background: rgba(0,0,0,0.3); 
+  color: #fff; 
+  transition: all 0.2s; 
+}
+.search-wrap input:focus { 
+  outline: none; 
+  border-color: var(--primary); 
+  background: rgba(0,0,0,0.5); 
+  box-shadow: 0 0 0 4px rgba(217, 70, 239, 0.1);
+}
+.filter-row { 
+  display: flex; 
+  gap: 16px; 
+  flex-wrap: wrap; 
+}
+.filter-select { 
+  padding: 16px 24px; 
+  border: 1px solid var(--border); 
+  border-radius: 14px; 
+  font-family: var(--font-body); 
+  font-size: 15px; 
+  font-weight: 600; 
+  background: var(--bg-dark); 
+  color: #fff; 
+  cursor: pointer; 
+  appearance: none; 
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d946ef' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e"); 
+  background-repeat: no-repeat; 
+  background-position: right 20px center; 
+  background-size: 18px; 
+  padding-right: 56px; 
+  transition: border-color 0.2s;
+}
+.filter-select:focus { 
+  outline: none; 
+  border-color: var(--primary); 
+}
+
+/* ============================================================
+   StudyNest — Inner Pages
+   This file controls the Calendar Grid and the Weekly Planner.
+   ============================================================ */
+
+/* --- Calendar Page --- */
+.calendar-wrapper {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.cal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.cal-title {
+  font-family: var(--font-head);
+  font-size: 28px;
+  font-weight: 800;
+  margin: 0;
+  color: #ffffff;
+}
+
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.cal-day-name {
+  padding: 20px;
+  text-align: center;
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--primary);
+  border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  background-color: rgba(0, 0, 0, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cal-cell {
+  min-height: 150px;
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  background-color: var(--bg-card);
+}
+
+.cal-cell.other {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: var(--text-muted);
+}
+
+.cal-cell.today {
+  background-color: rgba(217, 70, 239, 0.05);
+  border: 1px solid var(--primary);
+}
+
+.cal-day-num {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  display: block;
+  color: #ffffff;
+}
+
+.cal-event {
+  font-size: 13px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cal-event.task {
+  background-color: rgba(139, 92, 246, 0.2);
+  color: #a78bfa;
+  border-left: 3px solid #8b5cf6;
+}
+
+.cal-event.overdue {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #fca5a5;
+  border-left: 3px solid #ef4444;
+}
+
+.cal-event.session {
+  background-color: rgba(16, 185, 129, 0.2);
+  color: #6ee7b7;
+  border-left: 3px solid #10b981;
+}
+
+/* --- Planner Page --- */
+.planner-wrapper {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.planner-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.planner-nav {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.planner-title {
+  font-family: var(--font-head);
+  font-size: 24px;
+  font-weight: 800;
+  margin: 0;
+  color: #ffffff;
+}
+
+.planner-days {
+  display: grid;
+  grid-template-columns: 90px repeat(7, 1fr);
+  border-bottom: 1px solid var(--border);
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.planner-day-header {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-muted);
+  border-left: 1px solid var(--border);
+  text-transform: uppercase;
+}
+
+.planner-day-header:first-child {
+  border-left: none;
+}
+
+.planner-day-header span {
+  display: block;
+  font-size: 26px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-top: 6px;
+  font-family: var(--font-head);
+}
+
+.planner-day-header.active,
+.planner-day-header.today {
+  background-color: rgba(217, 70, 239, 0.1);
+  color: var(--primary);
+}
+
+.planner-day-header.active span,
+.planner-day-header.today span {
+  color: var(--primary);
+  text-shadow: 0 0 15px rgba(217, 70, 239, 0.5);
+}
+
+.planner-body {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  max-height: 700px;
+  overflow-y: auto;
+  position: relative;
+}
+
+.planner-times {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border);
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.planner-time-slot {
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.planner-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  position: relative;
+}
+
+.planner-col {
+  border-left: 1px solid var(--border);
+  position: relative;
+  min-height: 100%;
+}
+
+.planner-col:first-child {
+  border-left: none;
+}
+
+.planner-col::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+  background-size: 100% 80px;
+  pointer-events: none;
+}
+
+.planner-session {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  background: var(--gradient);
+  color: #ffffff;
+  border-radius: 12px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 12px;
+  padding-right: 12px;
+  font-size: 13px;
+  line-height: 1.4;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(217, 70, 239, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+  z-index: 2;
+}
+
+.planner-session:hover {
+  transform: scale(1.02);
+  z-index: 3;
+  box-shadow: 0 10px 30px rgba(217, 70, 239, 0.6);
+}
+
+.planner-session b {
+  display: block;
+  font-weight: 800;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+}
+
+.planner-session .ps-subject {
+  display: block;
+  font-size: 12px;
+  opacity: 0.9;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+.planner-session .ps-time {
+  display: block;
+  font-size: 11px;
+  opacity: 0.8;
+  margin-top: 4px;
+}
+
+.planner-session.compact {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.planner-session.compact .ps-subject,
+.planner-session.compact .ps-time {
+  display: none;
+}
+
+.planner-state-inner {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 16px;
+}
+
+.planner-state-inner h3 {
+  font-family: var(--font-head);
+  font-size: 24px;
+  color: #ffffff;
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.planner-state-inner p {
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+
+.planner-state-inner.error h3 {
+  color: var(--status-overdue);
+}
+
+@media (max-width: 1024px) {
+  .planner-body {
+    grid-template-columns: 70px 1fr;
+  }
+  .planner-days {
+    grid-template-columns: 70px repeat(7, 1fr);
+  }
+  .planner-session {
+    font-size: 11px;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 900px) {
+  .cal-cell {
+    min-height: 120px;
+    padding: 12px;
+  }
+  .cal-event {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 700px) {
+  .planner-days {
+    grid-template-columns: 50px repeat(7, 1fr);
+  }
+  .planner-day-header {
+    font-size: 12px;
+    padding: 12px 4px;
+  }
+  .planner-day-header span {
+    font-size: 18px;
+  }
+  .planner-body {
+    grid-template-columns: 50px 1fr;
+  }
+  .planner-session .ps-subject,
+  .planner-session .ps-time {
+    display: none;
+  }
+}

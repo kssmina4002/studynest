@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Tasks — StudyNest</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- MOBILE OVERLAY -->
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-icon"><i data-lucide="graduation-cap" class="icon" style="color:#fff;"></i></div>
+      <div>
+        <div class="brand-name">StudyNest</div>
+        <div class="brand-sub">Academic Tracker</div>
+      </div>
+    </div>
+    <nav class="nav">
+      <a class="nav-item" href="dashboard.html"><i data-lucide="layout-dashboard" class="icon"></i>Dashboard</a>
+      <a class="nav-item active" href="tasks.html"><i data-lucide="check-square" class="icon"></i>My Tasks</a>
+      <a class="nav-item" href="subjects.html"><i data-lucide="book-open" class="icon"></i>My Subjects</a>
+      <a class="nav-item" href="planner.html"><i data-lucide="calendar-days" class="icon"></i>Study Planner</a>
+      <a class="nav-item" href="study.html"><i data-lucide="timer" class="icon"></i>Study Timer</a>
+      <a class="nav-item" href="calendar.html"><i data-lucide="calendar" class="icon"></i>Calendar</a>
+      <a class="nav-item" href="progress.html"><i data-lucide="bar-chart-2" class="icon"></i>Insights</a>
+      <a class="nav-item" href="profile.html"><i data-lucide="user" class="icon"></i>Profile</a>
+    </nav>
+    <div class="sidebar-footer">
+      <a class="nav-item logout" id="logoutBtn"><i data-lucide="log-out" class="icon"></i>Logout</a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main">
+    <header class="topbar">
+      <button class="menu-btn" id="menuBtn"><i data-lucide="menu" class="icon"></i></button>
+      <div class="topbar-left">
+        <h1 class="welcome">My Tasks</h1>
+      </div>
+      <div class="topbar-right">
+        <button class="btn btn-primary" onclick="openTaskModal('add')">
+          <i data-lucide="plus" class="icon"></i> Add New Task
+        </button>
+      </div>
+    </header>
+
+    <section class="page active">
+
+      <!-- SUMMARY -->
+      <div class="top-summary-grid" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="top-summary-card">
+          <div>
+            <h2 id="taskStatTotal">0</h2>
+            <p>Total Tasks</p>
+          </div>
+          <div class="summary-icon" style="background: rgba(139, 92, 246, 0.15);">
+            <i data-lucide="clipboard-list" style="color: var(--secondary);"></i>
+          </div>
+        </div>
+        <div class="top-summary-card">
+          <div>
+            <h2 id="taskStatPending">0</h2>
+            <p>Pending</p>
+          </div>
+          <div class="summary-icon" style="background: rgba(245, 158, 11, 0.15);">
+            <i data-lucide="clock" style="color: var(--status-pending);"></i>
+          </div>
+        </div>
+        <div class="top-summary-card">
+          <div>
+            <h2 id="taskStatCompleted">0</h2>
+            <p>Completed</p>
+          </div>
+          <div class="summary-icon" style="background: rgba(16, 185, 129, 0.15);">
+            <i data-lucide="check-circle-2" style="color: var(--status-completed);"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOOLBAR -->
+      <div class="toolbar">
+        <div class="search-filter-row">
+          <div class="search-wrap">
+            <i data-lucide="search" class="icon"></i>
+            <input type="text" id="taskSearch" placeholder="Search tasks...">
+          </div>
+          <button class="btn btn-ghost" onclick="clearFilters()">Clear</button>
+        </div>
+        <div class="filter-row">
+          <select id="filterStatus" class="filter-select">
+            <option value="All">All Statuses</option>
+            <option value="Not Started">Not Started</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+            <option value="Overdue">Overdue</option>
+          </select>
+          <select id="filterPriority" class="filter-select">
+            <option value="All">All Priorities</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+          </select>
+          <select id="filterSubject" class="filter-select">
+            <option value="All">All Subjects</option>
+          </select>
+          <select id="filterType" class="filter-select">
+            <option value="All">All Types</option>
+            <option value="Assignment">Assignment</option>
+            <option value="Project">Project</option>
+            <option value="Quiz">Quiz</option>
+            <option value="Exam">Exam</option>
+            <option value="Reading">Reading</option>
+            <option value="Research">Research</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- TABLE -->
+      <div class="card" style="padding: 32px;">
+        <div class="card-head" style="display: flex; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 12px;">
+          <h3 style="margin: 0; color: #fff;">Task List</h3>
+          <span id="taskCount" style="font-size:15px; color:var(--text-muted); font-weight:600;">Showing 0 tasks</span>
+        </div>
+        <div class="table-responsive">
+          <table class="rtable">
+            <thead>
+              <tr>
+                <th>Task Title</th>
+                <th>Subject</th>
+                <th>Type</th>
+                <th>Due Date</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="taskTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+  <!-- ADD/EDIT TASK MODAL -->
+  <div class="modal-backdrop" id="taskModal">
+    <div class="modal" style="max-width: 640px;">
+      <div class="modal-head">
+        <h3 id="taskModalTitle">Add New Task</h3>
+        <button class="icon-btn" data-close="task" type="button"><i data-lucide="x" class="icon"></i></button>
+      </div>
+
+      <form id="taskForm">
+        <input type="hidden" name="id" id="taskId">
+
+        <div class="field">
+          <label>Task Title *</label>
+          <input type="text" name="title" id="taskTitle" required placeholder="e.g. Chapter 5 review">
+        </div>
+
+        <div class="form-grid" style="margin-bottom: 20px;">
+          <div class="field">
+            <label>Subject *</label>
+            <input list="subjectList" id="taskSubject" required placeholder="e.g. Mathematics">
+            <datalist id="subjectList"></datalist>
+          </div>
+          <div class="field">
+            <label>Task Type *</label>
+            <select name="type" id="taskType">
+              <option value="Assignment">Assignment</option>
+              <option value="Project">Project</option>
+              <option value="Quiz">Quiz</option>
+              <option value="Exam">Exam</option>
+              <option value="Reading">Reading</option>
+              <option value="Research">Research</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Description</label>
+          <textarea name="description" id="taskDesc" rows="2" placeholder="Add notes or instructions"></textarea>
+        </div>
+
+        <div class="form-grid-3" style="margin-bottom: 20px;">
+          <div class="field">
+            <label>Due Date *</label>
+            <input type="date" name="due" id="taskDue" required>
+          </div>
+          <div class="field">
+            <label>Priority *</label>
+            <select name="priority" id="taskPriority">
+              <option>Low</option>
+              <option selected>Medium</option>
+              <option>High</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Est. Minutes</label>
+            <input type="number" name="estimated_minutes" id="taskEst" min="0" placeholder="60">
+          </div>
+        </div>
+
+        <div class="form-grid" style="margin-bottom: 20px;">
+          <div class="field">
+            <label>Status</label>
+            <select name="status" id="taskStatus">
+              <option selected>Not Started</option>
+              <option>In Progress</option>
+              <option>Completed</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Recurring</label>
+            <select name="recurring" id="taskRecurring">
+              <option value="">None</option>
+              <option value="daily">Daily</option>
+              <option value="weekly">Weekly</option>
+              <option value="monthly">Monthly</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- EXAM FIELDS -->
+        <div id="examFields" style="display:none;">
+          <div class="field">
+            <label>Exam Topics</label>
+            <textarea name="exam_topics" id="taskExamTopics" rows="2" placeholder="Chapters 1-5, formulas, definitions..."></textarea>
+          </div>
+          <div class="field">
+            <label>Readiness (self-assessed): <span id="readinessValue">0</span>%</label>
+            <input type="range" name="exam_readiness" id="taskReadiness" min="0" max="100" value="0" style="width:100%; accent-color: var(--primary);">
+          </div>
+        </div>
+
+        <!-- SUBTASKS -->
+        <div class="field">
+          <label>Subtasks / Checklist</label>
+          <div class="subtask-list" id="subtaskList"></div>
+          <div class="add-subtask-row">
+            <input type="text" id="newSubtaskInput" placeholder="Add a subtask and press Enter">
+            <button type="button" class="btn btn-ghost btn-sm" id="addSubtaskBtn">Add</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Notes</label>
+          <textarea name="notes" id="taskNotes" rows="2" placeholder="Additional notes"></textarea>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn btn-ghost" data-close="task">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="saveTaskBtn">Save Task</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- DELETE CONFIRM MODAL -->
+  <div class="modal-backdrop" id="deleteModal">
+    <div class="modal" style="max-width: 420px;">
+      <div class="modal-head">
+        <h3 style="color:var(--status-overdue)">Delete Task?</h3>
+        <button class="icon-btn" data-close="delete" type="button"><i data-lucide="x" class="icon"></i></button>
+      </div>
+      <p style="color:var(--text-muted); font-size:15px; margin: 0 0 24px;">
+        This task and all its subtasks will be permanently deleted. This cannot be undone.
+      </p>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" data-close="delete">Cancel</button>
+        <button class="btn btn-danger" id="confirmDeleteBtn">Delete Task</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"><i data-lucide="check-circle" class="icon"></i><span id="toastMsg">Saved</span></div>
+
+  <script src="js/supabase-config.js"></script>
+  <script src="js/preview.js"></script>
+  <script src="js/tasks.js"></script>
+  <script>if (window.lucide) lucide.createIcons();</script>
+</body>
+</html>

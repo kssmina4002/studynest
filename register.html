@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account — StudyNest</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/auth.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="auth-body">
+  <div class="auth-wrapper">
+    
+    <!-- VISUAL SIDE -->
+    <div class="auth-visual">
+      <div class="visual-top">
+        <h1>StudyNest<span>Smart Study Planner</span></h1>
+      </div>
+      <div class="visual-bottom">
+        <h2>Start Organizing Today</h2>
+        <p>Track your assignments, plan focused study sessions, and watch your progress grow.</p>
+      </div>
+    </div>
+
+    <!-- FORM SIDE -->
+    <div class="auth-form-side">
+      <div class="auth-card">
+        
+        <!-- Centered Logo -->
+        <div class="logo-icon">
+          <i data-lucide="graduation-cap" style="width:32px;height:32px;"></i>
+        </div>
+        
+        <!-- Centered Text -->
+        <h1>Create Account</h1>
+        <p class="auth-sub">Join StudyNest and start achieving</p>
+        
+        <div class="auth-error-alert" id="regError"></div>
+        
+        <form id="registerForm" novalidate>
+          
+          <div class="field">
+            <label for="regName">Full Name</label>
+            <div class="input-wrap">
+              <i data-lucide="user"></i>
+              <input type="text" id="regName" placeholder="Your full name" autocomplete="name" required>
+            </div>
+            <span class="field-error" id="regNameError"></span>
+          </div>
+
+          <div class="field">
+            <label for="regEmail">Email Address</label>
+            <div class="input-wrap">
+              <i data-lucide="mail"></i>
+              <input type="email" id="regEmail" placeholder="you@email.com" autocomplete="email" required>
+            </div>
+            <span class="field-error" id="regEmailError"></span>
+          </div>
+
+          <div class="field">
+            <label for="regPassword">Password</label>
+            <div class="input-wrap">
+              <i data-lucide="lock"></i>
+              <input type="password" id="regPassword" placeholder="At least 8 characters" autocomplete="new-password" required>
+              <button type="button" class="pw-toggle" onclick="togglePassword('regPassword', this)">
+                <i data-lucide="eye"></i>
+              </button>
+            </div>
+            <span class="field-error" id="regPasswordError"></span>
+          </div>
+
+          <div class="field">
+            <label for="regConfirmPassword">Confirm Password</label>
+            <div class="input-wrap">
+              <i data-lucide="lock"></i>
+              <input type="password" id="regConfirmPassword" placeholder="Re-enter your password" autocomplete="new-password" required>
+              <button type="button" class="pw-toggle" onclick="togglePassword('regConfirmPassword', this)">
+                <i data-lucide="eye"></i>
+              </button>
+            </div>
+            <span class="field-error" id="regConfirmError"></span>
+          </div>
+
+          <button type="submit" class="btn-primary" style="margin-top: 8px;">Create Account</button>
+          
+        </form>
+        
+        <p class="auth-foot">Already have an account? <a href="login.html">Sign in</a></p>
+        <a href="index.html" class="btn-home"><i data-lucide="arrow-left" style="width:14px;height:14px;"></i> Back to home</a>
+        
+      </div>
+    </div>
+  </div>
+
+  <script src="js/supabase-config.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    if (window.lucide) {
+      lucide.createIcons();
+    }
+  </script>
+</body>
+</html>

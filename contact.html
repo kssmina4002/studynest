@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact & Feedback — StudyNest</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/landing.css">
+  
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- NAVIGATION BAR -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">
+          <i data-lucide="graduation-cap" style="width:24px;height:24px;"></i>
+        </div>
+        <div class="logo-text-wrapper">
+          <span class="logo-name">StudyNest</span>
+          <span class="logo-sub">Your Academic Study Planner</span>
+        </div>
+      </a>
+      
+      <div class="nav-links" id="navLinks">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html#features" class="nav-link">Features</a>
+        <a href="index.html#how-it-works" class="nav-link">How It Works</a>
+        <a href="index.html#faq" class="nav-link">FAQ</a>
+        
+        <div class="nav-actions">
+          <a href="login.html" class="sign-in-link">Sign In</a>
+          <a href="register.html" class="btn btn-primary">Get Started</a>
+        </div>
+      </div>
+      
+      <button class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- CONTACT PAGE -->
+  <section class="legal-page">
+    <div class="container">
+      <div class="legal-header">
+        <h1>Contact & Feedback</h1>
+        <p>Have a question or suggestion? We would love to hear from you.</p>
+      </div>
+
+      <div class="contact-grid">
+        
+        <!-- Contact Information -->
+        <div class="contact-info-card">
+          <h3>StudyNest Support</h3>
+          <p>For questions, suggestions, or concerns about StudyNest, you can contact the team responsible for the system.</p>
+          
+          <div class="contact-detail">
+            <span>Email</span>
+            <strong>support@studynest.local</strong>
+          </div>
+          
+          <div class="contact-detail">
+            <span>Support Hours</span>
+            <strong>Mon-Fri, 8:00 AM - 5:00 PM</strong>
+          </div>
+          
+          <div class="contact-detail">
+            <span>Purpose</span>
+            <strong>Technical concerns, bug reports, suggestions, and general questions.</strong>
+          </div>
+        </div>
+
+        <!-- Feedback Form -->
+        <div class="feedback-form">
+          <h3>Send Us a Message</h3>
+          
+          <div class="form-success" id="formSuccess">
+            Thank you! Your feedback has been submitted successfully.
+          </div>
+          <p id="formError" role="alert" style="display:none;color:#f87171;margin-bottom:16px;"></p>
+
+          <form id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="contactName" required placeholder="Your full name">
+              </div>
+              <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" id="contactEmail" required placeholder="you@email.com">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Feedback Type</label>
+                <select id="contactType" required>
+                  <option value="" disabled selected>Select a type...</option>
+                  <option value="General Inquiry">General Inquiry</option>
+                  <option value="Technical Issue">Technical Issue</option>
+                  <option value="Bug Report">Bug Report</option>
+                  <option value="Feature Suggestion">Feature Suggestion</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Subject</label>
+                <input type="text" id="contactSubject" required placeholder="Brief subject">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Message</label>
+              <textarea id="contactMessage" required placeholder="Please describe your inquiry or feedback in detail..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Feedback</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <div class="logo-icon" style="width: 36px; height: 36px;">
+              <i data-lucide="graduation-cap" style="width:20px;height:20px;"></i>
+            </div>
+            <span class="logo-name" style="font-size: 20px;">StudyNest</span>
+          </a>
+          <p>Your academic study planner for organizing tasks, planning study sessions, and tracking progress.</p>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Product</h4>
+          <div class="footer-links">
+            <a href="index.html#features">Features</a>
+            <a href="index.html#how-it-works">How It Works</a>
+            <a href="index.html#faq">FAQ</a>
+          </div>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Account</h4>
+          <div class="footer-links">
+            <a href="login.html">Sign In</a>
+            <a href="register.html">Create Account</a>
+          </div>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Support</h4>
+          <div class="footer-links">
+            <a href="contact.html">Contact & Feedback</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        &copy; <span id="currentYear"></span> StudyNest. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Mobile Menu Toggle
+      const hamburger = document.getElementById("hamburger");
+      const navLinks = document.getElementById("navLinks");
+      if (hamburger && navLinks) {
+        hamburger.addEventListener("click", function() {
+          navLinks.classList.toggle("open");
+        });
+      }
+
+      // Form Submission
+      const contactForm = document.getElementById("contactForm");
+      const formSuccess = document.getElementById("formSuccess");
+      const formError = document.getElementById("formError");
+
+      if (contactForm) {
+        contactForm.addEventListener("submit", async function(e) {
+          e.preventDefault();
+          formSuccess.style.display = "none";
+          formError.style.display = "none";
+          const submitButton = contactForm.querySelector('button[type="submit"]');
+          submitButton.disabled = true;
+
+          try {
+            const { data: { session }, error: sessionError } = await supabaseClient.auth.getSession();
+            if (sessionError) throw sessionError;
+
+            const { error } = await supabaseClient.from("feedback").insert({
+              user_id: session ? session.user.id : null,
+              name: document.getElementById("contactName").value.trim(),
+              email: document.getElementById("contactEmail").value.trim(),
+              type: document.getElementById("contactType").value,
+              subject: document.getElementById("contactSubject").value.trim(),
+              message: document.getElementById("contactMessage").value.trim()
+            });
+            if (error) throw error;
+
+            formSuccess.style.display = "block";
+            contactForm.reset();
+            setTimeout(function() {
+              formSuccess.style.display = "none";
+            }, 5000);
+          } catch (error) {
+            formError.textContent = "Could not submit your message: " + error.message;
+            formError.style.display = "block";
+          } finally {
+            submitButton.disabled = false;
+          }
+        });
+      }
+
+      // Dynamic Footer Year
+      const yearSpan = document.getElementById("currentYear");
+      if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+      }
+
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+    });
+  </script>
+</body>
+</html>

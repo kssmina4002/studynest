@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Timer — StudyNest</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    .timer-page {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .timer-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 32px;
+      padding: 60px 40px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .timer-card::before {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(
+        circle,
+        rgba(217, 70, 239, 0.15) 0%,
+        transparent 60%
+      );
+      top: -200px;
+      right: -200px;
+      pointer-events: none;
+    }
+
+    .mode-tabs {
+      display: inline-flex;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 16px;
+      padding: 6px;
+      gap: 4px;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 2;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .mode-tabs button {
+      padding: 12px 22px;
+      border-radius: 12px;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      font-family: var(--font-body);
+      transition: all 0.2s;
+    }
+
+    .mode-tabs button.active {
+      background: var(--gradient);
+      color: #ffffff;
+      box-shadow: 0 6px 20px rgba(217, 70, 239, 0.4);
+    }
+
+    .timer-display {
+      font-family: var(--font-head);
+      font-size: clamp(80px, 14vw, 150px);
+      font-weight: 800;
+      letter-spacing: -4px;
+      line-height: 1;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .timer-label {
+      font-size: 16px;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin: 0 0 40px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .timer-controls {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 2;
+      flex-wrap: wrap;
+    }
+
+    .timer-controls .btn {
+      min-width: 140px;
+    }
+
+    /* Updated to 2 columns since Task link is removed */
+    .timer-inputs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      max-width: 650px;
+      margin: 0 auto 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .timer-inputs input,
+    .timer-inputs select {
+      padding: 16px 20px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      color: #ffffff;
+      font-family: var(--font-body);
+      font-size: 15px;
+      width: 100%;
+    }
+
+    .timer-inputs input:focus,
+    .timer-inputs select:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .timer-inputs input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .timer-inputs select option {
+      background: var(--bg-card);
+      color: #ffffff;
+    }
+
+    .focus-rating-box {
+      display: none;
+      background: rgba(217, 70, 239, 0.1);
+      border: 1px solid rgba(217, 70, 239, 0.3);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 24px 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .focus-rating-box.show {
+      display: block;
+    }
+
+    .focus-rating-box h4 {
+      font-family: var(--font-head);
+      font-size: 18px;
+      margin: 0 0 6px;
+      color: #ffffff;
+    }
+
+    .focus-rating-box p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 0 0 16px;
+    }
+
+    .focus-rating {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .focus-star {
+      background: transparent;
+      border: 2px solid var(--border);
+      color: var(--text-muted);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      font-size: 18px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.15s;
+      display: grid;
+      place-items: center;
+    }
+
+    .focus-star:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .focus-star.active {
+      background: var(--gradient);
+      border-color: transparent;
+      color: #ffffff;
+      box-shadow: 0 6px 20px rgba(217, 70, 239, 0.4);
+    }
+
+    .timer-history {
+      margin-top: 40px;
+    }
+
+    .timer-history h3 {
+      font-family: var(--font-head);
+      font-size: 20px;
+      margin-bottom: 16px;
+      color: #ffffff;
+    }
+
+    .history-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .history-item .subject {
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .history-item .title {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .history-item .duration {
+      color: var(--text-muted);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 700px) {
+      .timer-inputs {
+        grid-template-columns: 1fr;
+      }
+      .timer-card {
+        padding: 40px 20px;
+      }
+      .focus-star {
+        width: 42px;
+        height: 42px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MOBILE OVERLAY -->
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-icon">
+        <i data-lucide="graduation-cap" class="icon" style="color:#fff;"></i>
+      </div>
+      <div>
+        <div class="brand-name">StudyNest</div>
+        <div class="brand-sub">Academic Tracker</div>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <a class="nav-item" href="dashboard.html"><i data-lucide="layout-dashboard" class="icon"></i>Dashboard</a>
+      <a class="nav-item" href="tasks.html"><i data-lucide="check-square" class="icon"></i>My Tasks</a>
+      <a class="nav-item" href="subjects.html"><i data-lucide="book-open" class="icon"></i>My Subjects</a>
+      <a class="nav-item" href="planner.html"><i data-lucide="calendar-days" class="icon"></i>Study Planner</a>
+      <a class="nav-item active" href="study.html"><i data-lucide="timer" class="icon"></i>Study Timer</a>
+      <a class="nav-item" href="calendar.html"><i data-lucide="calendar" class="icon"></i>Calendar</a>
+      <a class="nav-item" href="progress.html"><i data-lucide="bar-chart-2" class="icon"></i>Insights</a>
+      <a class="nav-item" href="profile.html"><i data-lucide="user" class="icon"></i>Profile</a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a class="nav-item logout" id="logoutBtn"><i data-lucide="log-out" class="icon"></i>Logout</a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <header class="topbar">
+      <button class="menu-btn" id="menuBtn">
+        <i data-lucide="menu" class="icon"></i>
+      </button>
+      <div class="topbar-left">
+        <h1 class="welcome">Study Timer</h1>
+      </div>
+    </header>
+
+    <section class="page active">
+      <div class="timer-page">
+
+        <!-- TIMER CARD -->
+        <div class="timer-card">
+
+          <!-- Mode tabs -->
+          <div class="mode-tabs" id="modeTabs">
+            <button data-min="25" class="active">Focus (25m)</button>
+            <button data-min="5">Short Break (5m)</button>
+            <button data-min="15">Long Break (15m)</button>
+          </div>
+
+          <!-- Timer display -->
+          <div class="timer-display" id="timerDisplay">25:00</div>
+          <p class="timer-label" id="timerLabel">Ready to focus</p>
+
+          <!-- Controls -->
+          <div class="timer-controls">
+            <button class="btn btn-primary" id="startBtn">
+              <i data-lucide="play" class="icon"></i> Start
+            </button>
+            <button class="btn btn-ghost" id="pauseBtn" style="display:none;">
+              <i data-lucide="pause" class="icon"></i> Pause
+            </button>
+            <button class="btn btn-ghost" id="resetBtn">
+              <i data-lucide="rotate-ccw" class="icon"></i> Reset
+            </button>
+          </div>
+
+          <!-- Inputs (Updated: 2 columns, Task removed) -->
+          <div class="timer-inputs">
+            <select id="timerSubject">
+              <option value="">Select Subject</option>
+            </select>
+            <input type="text" id="timerTitle" placeholder="Session title (e.g. Chapter 5)">
+          </div>
+
+          <p style="font-size:13px; color:var(--text-muted); position:relative; z-index:2; margin:0;">
+            Completed focus sessions are saved to your planner and dashboard automatically.
+          </p>
+
+          <!-- Focus rating (hidden until session completes) -->
+          <div class="focus-rating-box" id="focusRatingBox">
+            <h4>How focused were you?</h4>
+            <p>Your rating helps you evaluate your study habits.</p>
+            <div class="focus-rating" id="focusRating">
+              <button type="button" class="focus-star" data-rating="1">1</button>
+              <button type="button" class="focus-star" data-rating="2">2</button>
+              <button type="button" class="focus-star" data-rating="3">3</button>
+              <button type="button" class="focus-star" data-rating="4">4</button>
+              <button type="button" class="focus-star" data-rating="5">5</button>
+            </div>
+            <button type="button" class="btn btn-primary" id="saveRatingBtn" style="display:none;">
+              Save Rating
+            </button>
+            <button type="button" class="btn btn-ghost" id="skipRatingBtn" style="margin-left:8px;">
+              Skip
+            </button>
+          </div>
+
+        </div>
+
+        <!-- HISTORY -->
+        <div class="timer-history">
+          <h3>Recent Sessions</h3>
+          <div id="historyList">
+            <p style="color:var(--text-muted); font-size:14px;">No sessions yet.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <script src="js/supabase-config.js"></script>
+  <script src="js/preview.js"></script>
+  <script src="js/study.js"></script>
+  <script>
+    if (window.lucide) {
+      lucide.createIcons();
+    }
+  </script>
+</body>
+</html>

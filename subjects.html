@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Subjects — StudyNest</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-icon"><i data-lucide="graduation-cap" class="icon" style="color:#fff;"></i></div>
+      <div>
+        <div class="brand-name">StudyNest</div>
+        <div class="brand-sub">Academic Tracker</div>
+      </div>
+    </div>
+    <nav class="nav">
+      <a class="nav-item" href="dashboard.html"><i data-lucide="layout-dashboard" class="icon"></i>Dashboard</a>
+      <a class="nav-item" href="tasks.html"><i data-lucide="check-square" class="icon"></i>My Tasks</a>
+      <a class="nav-item active" href="subjects.html"><i data-lucide="book-open" class="icon"></i>My Subjects</a>
+      <a class="nav-item" href="planner.html"><i data-lucide="calendar-days" class="icon"></i>Study Planner</a>
+      <a class="nav-item" href="study.html"><i data-lucide="timer" class="icon"></i>Study Timer</a>
+      <a class="nav-item" href="calendar.html"><i data-lucide="calendar" class="icon"></i>Calendar</a>
+      <a class="nav-item" href="progress.html"><i data-lucide="bar-chart-2" class="icon"></i>Insights</a>
+      <a class="nav-item" href="profile.html"><i data-lucide="user" class="icon"></i>Profile</a>
+    </nav>
+    <div class="sidebar-footer">
+      <a class="nav-item logout" id="logoutBtn"><i data-lucide="log-out" class="icon"></i>Logout</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="menu-btn" id="menuBtn"><i data-lucide="menu" class="icon"></i></button>
+      <div class="topbar-left">
+        <h1 class="welcome">My Subjects</h1>
+      </div>
+      <div class="topbar-right">
+        <button class="btn btn-primary" onclick="openSubjectModal('add')">
+          <i data-lucide="plus" class="icon"></i> Add Subject
+        </button>
+      </div>
+    </header>
+
+    <section class="page active">
+
+      <div class="card" style="padding: 20px 24px; margin-bottom: 24px;">
+        <p style="margin:0; color:var(--text-muted); font-size:14px;">
+          <i data-lucide="info" class="icon" style="width:16px;height:16px;display:inline;vertical-align:-3px;margin-right:6px;"></i>
+          Subjects help you group tasks, sessions, and exams. Add a subject to start tracking progress per course.
+        </p>
+      </div>
+
+      <div class="subjects-grid" id="subjectsGrid">
+        <div class="empty-state" style="grid-column:1/-1;">
+          <h4>Loading subjects...</h4>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+  <!-- SUBJECT FORM MODAL -->
+  <div class="modal-backdrop" id="subjectModal">
+    <div class="modal">
+      <div class="modal-head">
+        <h3 id="subjectModalTitle">Add Subject</h3>
+        <button class="icon-btn" data-close="subject" type="button"><i data-lucide="x" class="icon"></i></button>
+      </div>
+
+      <form id="subjectForm">
+        <input type="hidden" id="subjectId">
+
+        <div class="field">
+          <label>Subject Name *</label>
+          <input type="text" id="subjectName" required placeholder="e.g. Mathematics">
+        </div>
+
+        <div class="form-grid" style="margin-bottom: 20px;">
+          <div class="field">
+            <label>Course Code</label>
+            <input type="text" id="subjectCode" placeholder="e.g. MATH101">
+          </div>
+          <div class="field">
+            <label>Instructor</label>
+            <input type="text" id="subjectInstructor" placeholder="e.g. Prof. Smith">
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Color</label>
+          <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+            <input type="color" id="subjectColor" value="#d946ef"
+              style="width:60px; height:44px; border-radius:10px; border:1px solid var(--border); background:rgba(0,0,0,0.3); cursor:pointer; padding:4px;">
+            <span id="colorValue" style="font-size:13px; font-weight:600; color:var(--text-muted);">#d946ef</span>
+          </div>
+        </div>
+
+        <div class="form-grid" style="margin-bottom: 20px;">
+          <div class="field">
+            <label>Semester Start</label>
+            <input type="date" id="subjectStart">
+          </div>
+          <div class="field">
+            <label>Semester End</label>
+            <input type="date" id="subjectEnd">
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn btn-ghost" data-close="subject">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="saveSubjectBtn">Save Subject</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- SUBJECT DETAILS MODAL -->
+  <div class="modal-backdrop" id="subjectDetailModal">
+    <div class="modal" style="max-width: 680px;">
+      <div class="modal-head">
+        <h3 id="subjectDetailTitle">Subject</h3>
+        <button class="icon-btn" data-close="subjectDetail" type="button"><i data-lucide="x" class="icon"></i></button>
+      </div>
+      <div id="subjectDetailBody"></div>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" data-close="subjectDetail">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DELETE CONFIRM -->
+  <div class="modal-backdrop" id="deleteSubjectModal">
+    <div class="modal" style="max-width: 420px;">
+      <div class="modal-head">
+        <h3 style="color:var(--status-overdue)">Delete Subject?</h3>
+        <button class="icon-btn" data-close="deleteSubject" type="button"><i data-lucide="x" class="icon"></i></button>
+      </div>
+      <p style="color:var(--text-muted); font-size:15px; margin: 0 0 24px;">
+        Tasks linked to this subject will remain, but the subject itself will be removed. This cannot be undone.
+      </p>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" data-close="deleteSubject">Cancel</button>
+        <button class="btn btn-danger" id="confirmDeleteSubjectBtn">Delete Subject</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"><i data-lucide="check-circle" class="icon"></i><span id="toastMsg">Saved</span></div>
+
+  <script src="js/supabase-config.js"></script>
+  <script src="js/preview.js"></script>
+  <script src="js/subjects.js"></script>
+  <script>if (window.lucide) lucide.createIcons();</script>
+</body>
+</html>

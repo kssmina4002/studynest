@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — StudyNest</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-icon">
+        <i data-lucide="graduation-cap" class="icon" style="color:#fff;"></i>
+      </div>
+      <div>
+        <div class="brand-name">StudyNest</div>
+        <div class="brand-sub">Academic Tracker</div>
+      </div>
+    </div>
+    
+    <nav class="nav">
+      <a class="nav-item active" href="dashboard.html"><i data-lucide="layout-dashboard" class="icon"></i>Dashboard</a>
+      <a class="nav-item" href="tasks.html"><i data-lucide="check-square" class="icon"></i>My Tasks</a>
+      <a class="nav-item" href="planner.html"><i data-lucide="calendar-days" class="icon"></i>Study Planner</a>
+      <a class="nav-item" href="study.html"><i data-lucide="timer" class="icon"></i>Study Timer</a>
+      <a class="nav-item" href="calendar.html"><i data-lucide="calendar" class="icon"></i>Calendar</a>
+      <a class="nav-item" href="progress.html"><i data-lucide="bar-chart-2" class="icon"></i>Insights</a>
+      <a class="nav-item" href="profile.html"><i data-lucide="user" class="icon"></i>Profile</a>
+    </nav>
+    
+    <div class="sidebar-footer">
+      <a class="nav-item logout" id="logoutBtn"><i data-lucide="log-out" class="icon"></i>Logout</a>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <div class="main">
+    
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1 class="welcome">Dashboard</h1>
+      </div>
+      
+      <div class="topbar-right">
+        <span class="header-date" id="currentDate">Loading date...</span>
+        
+        <div class="avatar-wrapper" style="position: relative;">
+          <div class="avatar" id="userAvatar">S</div>
+          
+          <div class="dropdown-menu" id="profileMenu">
+            <div class="dropdown-header">
+              <strong id="dropdownName">Student</strong>
+              <span id="dropdownEmail">student@email.com</span>
+            </div>
+            <a class="dropdown-item" href="profile.html"><i data-lucide="user" class="icon"></i>View Profile</a>
+            <a class="dropdown-item danger" id="dropdownLogout"><i data-lucide="log-out" class="icon"></i>Logout</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- PAGE CONTENT -->
+    <section class="page active">
+      
+      <!-- 01 · HERO / WELCOME BANNER -->
+      <div class="hero-banner">
+        <div class="hero-content">
+          <h2>Good to see you, <span id="userName">Student</span>!</h2>
+          <p>Make today count, one task at a time.</p>
+        </div>
+        <div class="hero-actions">
+          <a href="tasks.html" class="btn-white">
+            <i data-lucide="plus" class="icon"></i> Add Task
+          </a>
+          <a href="planner.html" class="btn-white">
+            <i data-lucide="calendar-plus" class="icon"></i> Plan Session
+          </a>
+        </div>
+      </div>
+
+      <!-- 02 · ACADEMIC OVERVIEW CARDS -->
+      <div class="top-summary-grid">
+        <div class="top-summary-card">
+          <div>
+            <h2 id="statTotalTasks">0</h2>
+            <p>Total Tasks</p>
+          </div>
+          <div class="summary-icon">
+            <i data-lucide="layers" style="color:#8b5cf6;width:32px;height:32px;"></i>
+          </div>
+        </div>
+        
+        <div class="top-summary-card">
+          <div>
+            <h2 id="statCompletedTasks">0</h2>
+            <p>Completed</p>
+          </div>
+          <div class="summary-icon">
+            <i data-lucide="check-circle-2" style="color:#10b981;width:32px;height:32px;"></i>
+          </div>
+        </div>
+        
+        <div class="top-summary-card">
+          <div>
+            <h2 id="statPendingTasks">0</h2>
+            <p>Pending</p>
+          </div>
+          <div class="summary-icon">
+            <i data-lucide="clock" style="color:#f59e0b;width:32px;height:32px;"></i>
+          </div>
+        </div>
+
+        <div class="top-summary-card">
+          <div>
+            <h2 id="statOverdueTasks">0</h2>
+            <p>Overdue</p>
+          </div>
+          <div class="summary-icon">
+            <i data-lucide="alert-triangle" style="color:#ef4444;width:32px;height:32px;"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 · TODAY'S STUDY PLAN -->
+      <div class="section-title-row">
+        <h3>Today's Study Plan</h3>
+        <span class="total-time-badge" id="todayTimeBadge">Total time: 0 min</span>
+      </div>
+      <div class="activity-cards-grid" id="todayActivityGrid">
+        <div class="empty-state" style="grid-column:1/-1;">Loading...</div>
+      </div>
+
+      <!-- 04 · UPCOMING DEADLINES -->
+      <div class="section-title-row" style="margin-top:40px;">
+        <h3>Upcoming Deadlines</h3>
+        <a href="tasks.html" class="btn-link">View All Tasks →</a>
+      </div>
+      <div class="card" id="upcomingDeadlinesList">
+        <div class="empty-state">Loading...</div>
+      </div>
+
+      <!-- 05 · SUBJECT PROGRESS -->
+      <div class="section-title-row" style="margin-top:40px;">
+        <h3>Subject Progress</h3>
+        <a href="progress.html" class="btn-link">View Insights →</a>
+      </div>
+      <div class="subject-progress-grid" id="subjectProgressGrid">
+        <div class="empty-state" style="grid-column:1/-1;">Loading...</div>
+      </div>
+
+      <!-- 06 · WEEKLY ACTIVITY -->
+      <div class="section-title-row" style="margin-top:40px;">
+        <h3>This Week</h3>
+        <span class="total-time-badge" id="weeklyTotalBadge">0h 0m</span>
+      </div>
+      <div class="weekly-grid" id="weeklyActivityGrid">
+        <div class="empty-state" style="grid-column:1/-1;">Loading...</div>
+      </div>
+
+      <!-- 07 · REMINDERS -->
+      <div class="section-title-row" style="margin-top:40px;">
+        <h3>Study Reminders</h3>
+      </div>
+      <div class="card" id="remindersBox">
+        <div class="empty-state">Loading...</div>
+      </div>
+      
+    </section>
+  </div>
+
+  <script src="js/supabase-config.js"></script>
+  <script src="js/preview.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script>
+    if (window.lucide) {
+      lucide.createIcons();
+    }
+  </script>
+</body>
+</html>

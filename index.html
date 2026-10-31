@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyNest — Smart Study Tracker & Planner</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/landing.css">
+  
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- 1. NAVIGATION BAR -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">
+          <i data-lucide="graduation-cap" style="width:24px;height:24px;"></i>
+        </div>
+        <div class="logo-text-wrapper">
+          <span class="logo-name">StudyNest</span>
+          <span class="logo-sub">Your Academic Study Planner</span>
+        </div>
+      </a>
+      
+      <div class="nav-links" id="navLinks">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#how-it-works" class="nav-link">How It Works</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+        
+        <div class="nav-actions">
+          <a href="login.html" class="sign-in-link">Sign In</a>
+          <a href="register.html" class="btn btn-primary">Get Started</a>
+        </div>
+      </div>
+      
+      <button class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- 2. HERO SECTION -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div class="container">
+      <div class="hero-grid">
+        
+        <div class="hero-content">
+          <div class="hero-label">
+            <i data-lucide="sparkles" style="width:16px;height:16px;"></i> BUILT FOR FOCUSED STUDENTS
+          </div>
+          <h1>Plan Smarter. Study Better. <span class="accent">Stay Ahead.</span></h1>
+          <p>StudyNest helps you organize assignments, plan study sessions, manage deadlines, and monitor your academic progress—all in one convenient place.</p>
+          
+          <div class="hero-buttons">
+            <a href="register.html" class="btn btn-primary btn-lg">Start Planning for Free</a>
+            <a href="#features" class="btn btn-outline btn-lg">Explore Features</a>
+          </div>
+          
+          <div class="hero-support">
+            Organize your tasks. Plan your time. Track your progress.
+          </div>
+        </div>
+
+        <div class="hero-visual" style="position: relative;">
+          
+          <!-- Live Floating Elements -->
+          <div class="floating-elements">
+            <div class="float-card f-left">
+              <div class="f-icon"><i data-lucide="check-circle-2" style="color:#10b981;"></i></div>
+              <div>
+                <div class="f-title">Math Assignment</div>
+                <div class="f-sub">Completed today</div>
+              </div>
+            </div>
+            
+            <div class="float-card f-right">
+              <div class="f-icon"><i data-lucide="timer" style="color:#d946ef;"></i></div>
+              <div>
+                <div class="f-title">2h 30m</div>
+                <div class="f-sub">Focus time today</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Mockup -->
+          <div class="hero-mockup">
+            <div class="mockup-header">
+              <div class="mockup-dot red"></div>
+              <div class="mockup-dot yellow"></div>
+              <div class="mockup-dot green"></div>
+            </div>
+            
+            <div class="mockup-content">
+              <div class="mockup-sidebar">
+                <div class="mockup-sidebar-item active"></div>
+                <div class="mockup-sidebar-item"></div>
+                <div class="mockup-sidebar-item"></div>
+                <div class="mockup-sidebar-item"></div>
+              </div>
+              
+              <div class="mockup-main">
+                <div class="mockup-stats">
+                  <div class="mockup-stat-card">
+                    <span>Total Tasks</span>
+                    <strong>24</strong>
+                  </div>
+                  <div class="mockup-stat-card">
+                    <span>Completed</span>
+                    <strong>18</strong>
+                  </div>
+                </div>
+                
+                <div class="mockup-chart">
+                  <div class="mockup-bar" style="height: 40%;"></div>
+                  <div class="mockup-bar" style="height: 60%;"></div>
+                  <div class="mockup-bar" style="height: 90%;"></div>
+                  <div class="mockup-bar" style="height: 50%;"></div>
+                  <div class="mockup-bar" style="height: 70%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. DASHBOARD PREVIEW -->
+  <section class="section section-bg-dark">
+    <div class="container">
+      <div class="section-header">
+        <h2>Your Academic Life, <span class="accent">Organized in One Place</span></h2>
+        <p>Keep your assignments, study schedule, and progress organized with a dashboard designed around your academic routine.</p>
+      </div>
+      
+      <div class="dashboard-preview-large">
+        
+        <div class="preview-top-row">
+          <div class="preview-card">
+            <span>Total Tasks</span>
+            <strong>24</strong>
+          </div>
+          <div class="preview-card">
+            <span>Completed Tasks</span>
+            <strong>18</strong>
+          </div>
+          <div class="preview-card">
+            <span>Pending Tasks</span>
+            <strong>4</strong>
+          </div>
+          <div class="preview-card">
+            <span>Overdue Tasks</span>
+            <strong>2</strong>
+          </div>
+        </div>
+
+        <div class="preview-middle-row">
+          <div class="preview-panel">
+            <h4>Today's Study Schedule</h4>
+            <div class="preview-list-item">
+              <span>Mathematics Review</span>
+              <strong>10:00 AM</strong>
+            </div>
+            <div class="preview-list-item">
+              <span>Science Notes</span>
+              <strong>2:00 PM</strong>
+            </div>
+          </div>
+          
+          <div class="preview-panel">
+            <h4>Upcoming Tasks</h4>
+            <div class="preview-list-item">
+              <span>English Essay Draft</span>
+              <strong>Due Tomorrow</strong>
+            </div>
+            <div class="preview-list-item">
+              <span>Physics Lab Report</span>
+              <strong>Due Friday</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="preview-bottom-row">
+          <div class="preview-panel">
+            <h4>Academic Task Progress</h4>
+            <div style="width: 100%; height: 12px; background: var(--border); border-radius: 6px; overflow: hidden; margin-top: 16px;">
+              <div style="width: 75%; height: 100%; background: var(--gradient); border-radius: 6px;"></div>
+            </div>
+            <p style="font-size: 13px; color: var(--text-muted); margin-top: 12px; text-align: right;">75% Complete</p>
+          </div>
+          
+          <div class="preview-panel">
+            <h4>Weekly Study Overview</h4>
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; height: 60px; margin-top: 16px;">
+              <div style="width: 12%; height: 40%; background: var(--border); border-radius: 4px;"></div>
+              <div style="width: 12%; height: 70%; background: var(--primary); border-radius: 4px; box-shadow: 0 0 10px rgba(217,70,239,0.4);"></div>
+              <div style="width: 12%; height: 50%; background: var(--border); border-radius: 4px;"></div>
+              <div style="width: 12%; height: 90%; background: var(--primary); border-radius: 4px; box-shadow: 0 0 10px rgba(217,70,239,0.4);"></div>
+              <div style="width: 12%; height: 30%; background: var(--border); border-radius: 4px;"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. QUICK BENEFITS -->
+  <section class="section">
+    <div class="container">
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <i data-lucide="folder-check" style="width:24px;height:24px;"></i>
+          </div>
+          <h3>Stay Organized</h3>
+          <p>Keep assignments, projects, quizzes, and examinations in one organized task list.</p>
+        </div>
+        
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <i data-lucide="calendar-clock" style="width:24px;height:24px;"></i>
+          </div>
+          <h3>Manage Your Time</h3>
+          <p>Plan study sessions around your schedule and keep track of upcoming deadlines.</p>
+        </div>
+        
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <i data-lucide="line-chart" style="width:24px;height:24px;"></i>
+          </div>
+          <h3>See Your Progress</h3>
+          <p>Review completed tasks, unfinished activities, and your overall academic progress.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. FEATURES -->
+  <section class="section section-bg-dark" id="features">
+    <div class="container">
+      <div class="section-header">
+        <h2>Everything You Need to <span class="accent">Stay on Track</span></h2>
+        <p>From managing assignments to reviewing your progress, StudyNest brings your study routine together in one place.</p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon"><i data-lucide="clipboard-list" style="width:24px;height:24px;"></i></div>
+          <h3>Smart Task Management</h3>
+          <p>Create, edit, organize, and track assignments, projects, quizzes, and examinations.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon"><i data-lucide="calendar" style="width:24px;height:24px;"></i></div>
+          <h3>Weekly Study Planner</h3>
+          <p>Schedule study sessions by subject, date, start time, and end time.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon"><i data-lucide="calendar-days" style="width:24px;height:24px;"></i></div>
+          <h3>Calendar Overview</h3>
+          <p>View upcoming academic tasks and scheduled study sessions by date.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon"><i data-lucide="alarm-clock" style="width:24px;height:24px;"></i></div>
+          <h3>Deadline Tracking</h3>
+          <p>Identify pending, in-progress, completed, and overdue academic tasks.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon"><i data-lucide="trending-up" style="width:24px;height:24px;"></i></div>
+          <h3>Progress Monitoring</h3>
+          <p>Review your completion rate and see how your academic tasks are progressing.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon"><i data-lucide="layout-dashboard" style="width:24px;height:24px;"></i></div>
+          <h3>Personal Study Dashboard</h3>
+          <p>Access your task summaries, upcoming activities, and study progress from one dashboard.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. HOW IT WORKS -->
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <h2>Get Started in <span class="accent">Four Simple Steps</span></h2>
+        <p>Build a more organized study routine without unnecessary complexity.</p>
+      </div>
+      
+      <div class="steps-container">
+        <div class="step-item">
+          <div class="step-number">01</div>
+          <h3>Create Your Account</h3>
+          <p>Register with your name, email address, and password.</p>
+        </div>
+        
+        <div class="step-item">
+          <div class="step-number">02</div>
+          <h3>Add Academic Tasks</h3>
+          <p>Record assignments, projects, quizzes, examinations, and their deadlines.</p>
+        </div>
+        
+        <div class="step-item">
+          <div class="step-number">03</div>
+          <h3>Plan Study Sessions</h3>
+          <p>Schedule study activities by subject, date, and time.</p>
+        </div>
+        
+        <div class="step-item">
+          <div class="step-number">04</div>
+          <h3>Monitor Your Progress</h3>
+          <p>Update task statuses and review your completed and unfinished activities.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. STUDY PLANNING PREVIEW -->
+  <section class="section section-bg-dark">
+    <div class="container">
+      <div class="planner-preview-wrapper">
+        <div class="planner-text">
+          <h2>Turn Your Study Goals Into a <span class="accent">Weekly Plan</span></h2>
+          <p>Organize your available study time, schedule activities, and view your upcoming sessions in a weekly planner.</p>
+          <a href="register.html" class="btn btn-primary">Explore Study Planner</a>
+        </div>
+        
+        <div class="planner-visual">
+          <table class="planner-table">
+            <thead>
+              <tr>
+                <th>Day</th>
+                <th>Subject</th>
+                <th>Study Activity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Monday</td>
+                <td>Mathematics</td>
+                <td>Review formulas</td>
+              </tr>
+              <tr>
+                <td>Tuesday</td>
+                <td>Programming</td>
+                <td>Practice coding concepts</td>
+              </tr>
+              <tr>
+                <td>Wednesday</td>
+                <td>English</td>
+                <td>Prepare an assignment</td>
+              </tr>
+              <tr>
+                <td>Thursday</td>
+                <td>Science</td>
+                <td>Review lecture notes</td>
+              </tr>
+              <tr>
+                <td>Friday</td>
+                <td>Research</td>
+                <td>Work on project requirements</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. WHY CHOOSE STUDYNESS -->
+  <section class="section">
+    <div class="container">
+      <div class="why-grid">
+        <div class="why-text">
+          <h2>A Simpler Way to Manage Your <span class="accent">Academic Routine</span></h2>
+          
+          <div class="why-benefits">
+            <div class="why-benefit-item">
+              <i data-lucide="check-circle" class="why-icon" style="width:24px;height:24px;"></i>
+              <div>
+                <strong>One Organized Workspace</strong>
+                <p>Keep your academic tasks and study sessions together.</p>
+              </div>
+            </div>
+            
+            <div class="why-benefit-item">
+              <i data-lucide="check-circle" class="why-icon" style="width:24px;height:24px;"></i>
+              <div>
+                <strong>Clear Task Statuses</strong>
+                <p>Know which tasks are pending, in progress, completed, or overdue.</p>
+              </div>
+            </div>
+            
+            <div class="why-benefit-item">
+              <i data-lucide="check-circle" class="why-icon" style="width:24px;height:24px;"></i>
+              <div>
+                <strong>Flexible Study Planning</strong>
+                <p>Arrange study activities around your available time.</p>
+              </div>
+            </div>
+            
+            <div class="why-benefit-item">
+              <i data-lucide="check-circle" class="why-icon" style="width:24px;height:24px;"></i>
+              <div>
+                <strong>Visible Progress</strong>
+                <p>Use task summaries and progress indicators to review your progress.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="why-visual">
+          <div class="progress-circle-mockup">
+            <div class="progress-inner">
+              <strong>75%</strong>
+              <span>Completed</span>
+            </div>
+          </div>
+          <h4 style="text-align: center; margin-bottom: 8px;">Academic Progress</h4>
+          <p style="text-align: center; font-size: 14px; color: var(--text-muted);">Keep track of your completed tasks and stay motivated as you reach your academic goals.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. CHALLENGES (Replacing Testimonials) -->
+  <section class="section section-bg-dark">
+    <div class="container">
+      <div class="section-header">
+        <h2>Built for <span class="accent">Everyday Student Challenges</span></h2>
+        <p>StudyNest is designed to solve the common problems students face when managing their academic workload.</p>
+      </div>
+      
+      <div class="challenges-grid">
+        <div class="challenge-card">
+          <h3>Missing Deadlines</h3>
+          <p>Never lose track of due dates again. Our dashboard clearly highlights upcoming and overdue assignments.</p>
+        </div>
+        
+        <div class="challenge-card">
+          <h3>Unorganized Study Time</h3>
+          <p>Stop guessing when to study. Create a structured weekly planner that allocates time to specific subjects.</p>
+        </div>
+        
+        <div class="challenge-card">
+          <h3>Lack of Progress Tracking</h3>
+          <p>Stay motivated by visually seeing how many tasks you've completed and what's left to do.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. FAQ SECTION -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <h2>Frequently Asked <span class="accent">Questions</span></h2>
+        <p>Everything you need to know about using StudyNest.</p>
+      </div>
+      
+      <div class="faq-container">
+        
+        <div class="faq-item">
+          <button class="faq-question">
+            Is StudyNest free?
+            <i data-lucide="chevron-down" style="width:20px;height:20px;"></i>
+          </button>
+          <div class="faq-answer">
+            StudyNest is designed to help students organize academic tasks and study schedules. Any usage limits or fees will be clearly stated if they apply. Currently, the core features are completely free to use.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Can I use StudyNest on my phone?
+            <i data-lucide="chevron-down" style="width:20px;height:20px;"></i>
+          </button>
+          <div class="faq-answer">
+            Yes, StudyNest is designed to adapt to desktop, tablet, and mobile screens so students can access its features on different devices.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Can I edit my tasks after creating them?
+            <i data-lucide="chevron-down" style="width:20px;height:20px;"></i>
+          </button>
+          <div class="faq-answer">
+            Yes. Students can easily edit their saved tasks, update task statuses, and manage deadlines through the task management page.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Can I schedule study sessions?
+            <i data-lucide="chevron-down" style="width:20px;height:20px;"></i>
+          </button>
+          <div class="faq-answer">
+            Yes. The Study Planner allows students to create detailed study sessions with an activity title, subject, date, and time.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Will my tasks be saved?
+            <i data-lucide="chevron-down" style="width:20px;height:20px;"></i>
+          </button>
+          <div class="faq-answer">
+            Yes, your tasks will remain available when you return to your account. They are securely saved using the system's configured data storage and database.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Can other students see my tasks?
+            <i data-lucide="chevron-down" style="width:20px;height:20px;"></i>
+          </button>
+          <div class="faq-answer">
+            No. Each student's academic information is strictly private to their account. StudyNest enforces account-level access controls so other students cannot view or modify your tasks or study sessions.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. FINAL CALL-TO-ACTION -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Ready to <span class="accent">Organize Your Study Life?</span></h2>
+        <p>Start managing your academic tasks, planning study sessions, and tracking your progress with StudyNest.</p>
+        <a href="register.html" class="btn btn-primary btn-lg">Create Your Free Account</a>
+        <span class="cta-subtext">Create your account and start building a more organized study routine.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. FOOTER -->
+    <!-- 12. FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <div class="logo-icon" style="width: 36px; height: 36px;">
+              <i data-lucide="graduation-cap" style="width:20px;height:20px;"></i>
+            </div>
+            <span class="logo-name" style="font-size: 20px;">StudyNest</span>
+          </a>
+          <p>Your academic study planner for organizing tasks, planning study sessions, and tracking progress.</p>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Product</h4>
+          <div class="footer-links">
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#faq">FAQ</a>
+          </div>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Account</h4>
+          <div class="footer-links">
+            <a href="login.html">Sign In</a>
+            <a href="register.html">Create Account</a>
+          </div>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Support</h4>
+          <div class="footer-links">
+            <a href="contact.html">Contact & Feedback</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+          </div>
+        </div>
+        
+      </div>
+      
+      <div class="footer-bottom">
+        &copy; <span id="currentYear"></span> StudyNest. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT FOR LANDING PAGE INTERACTIVITY -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      
+      // 1. Mobile Menu Toggle
+      const hamburger = document.getElementById("hamburger");
+      const navLinks = document.getElementById("navLinks");
+      
+      if (hamburger && navLinks) {
+        hamburger.addEventListener("click", function() {
+          navLinks.classList.toggle("open");
+        });
+      }
+
+      // 2. FAQ Accordion Logic
+      const faqQuestions = document.querySelectorAll(".faq-question");
+      
+      for (let i = 0; i < faqQuestions.length; i++) {
+        faqQuestions[i].addEventListener("click", function() {
+          const currentItem = this.parentElement;
+          
+          // Close all other open items
+          const allItems = document.querySelectorAll(".faq-item");
+          for (let j = 0; j < allItems.length; j++) {
+            if (allItems[j] !== currentItem) {
+              allItems[j].classList.remove("active");
+            }
+          }
+          
+          // Toggle current item
+          currentItem.classList.toggle("active");
+        });
+      }
+
+      // 3. Dynamic Footer Year
+      const yearSpan = document.getElementById("currentYear");
+      if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+      }
+
+      // 4. Initialize Lucide Icons
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+      
+    });
+  </script>
+</body>
+</html>

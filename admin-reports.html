@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reports & Analytics — StudyNest</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-icon"><i data-lucide="graduation-cap" class="icon" style="color:#fff;"></i></div>
+      <div><div class="brand-name">StudyNest</div><div class="brand-sub">Administrator Panel</div></div>
+    </div>
+    <nav class="nav">
+      <div class="nav-group">
+        <span class="nav-group-label">Main Menu</span>
+        <a class="nav-item" href="admin-dashboard.html"><i data-lucide="layout-dashboard" class="icon"></i>Dashboard</a>
+        <a class="nav-item" href="admin-students.html"><i data-lucide="users" class="icon"></i>Student Management</a>
+        <a class="nav-item" href="admin-tasks.html"><i data-lucide="clipboard-list" class="icon"></i>Task Overview</a>
+        <a class="nav-item" href="admin-sessions.html"><i data-lucide="calendar" class="icon"></i>Study Sessions</a>
+        <a class="nav-item" href="admin-calendar.html"><i data-lucide="calendar-days" class="icon"></i>Calendar Overview</a>
+      </div>
+      <div class="nav-group">
+        <span class="nav-group-label">Monitoring</span>
+        <a class="nav-item active" href="admin-reports.html"><i data-lucide="bar-chart-2" class="icon"></i>Reports & Analytics</a>
+        <a class="nav-item" href="admin-logs.html"><i data-lucide="activity" class="icon"></i>Activity Logs</a>
+        <a class="nav-item" href="admin-feedback.html"><i data-lucide="mail" class="icon"></i>Student Feedback</a>
+      </div>
+      <div class="nav-group">
+        <span class="nav-group-label">Account</span>
+        <a class="nav-item" href="admin-profile.html"><i data-lucide="user" class="icon"></i>My Profile</a>
+        <a class="nav-item" href="admin-settings.html"><i data-lucide="settings" class="icon"></i>Settings</a>
+      </div>
+    </nav>
+    <div class="sidebar-footer"><a class="nav-item logout" id="logoutBtn"><i data-lucide="log-out" class="icon"></i>Logout</a></div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="topbar-left">
+        <div>
+          <h1 class="welcome">Reports & Analytics</h1>
+          <p style="font-size: 13px; color: var(--text-muted); margin: 4px 0 0 0;">Monitor student engagement, academic task completion, and study activity.</p>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span class="header-date" id="currentDate">Loading...</span>
+        <div class="avatar-wrapper" id="avatarWrapper">
+          <div class="avatar" id="userAvatar">A</div>
+          <div class="dropdown-menu" id="profileMenu">
+            <div class="dropdown-header">
+              <strong id="dropdownName">Administrator</strong>
+              <span id="dropdownEmail">admin@email.com</span>
+            </div>
+            <a class="dropdown-item" href="admin-profile.html"><i data-lucide="user" class="icon"></i>View Profile</a>
+            <a class="dropdown-item danger" id="dropdownLogout"><i data-lucide="log-out" class="icon"></i>Logout</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="page active">
+      <!-- 4 Summary Cards using correct CSS Grid classes -->
+      <div class="report-summary-grid">
+        <div class="report-card">
+          <div class="report-card-header"><h3>Total Students</h3><i data-lucide="users" style="color: #8b5cf6;"></i></div>
+          <div><h2 id="repTotalStudents">0</h2><p class="report-card-subtext" id="repActiveStudents">0 Active accounts</p></div>
+        </div>
+        <div class="report-card">
+          <div class="report-card-header"><h3>Total Tasks</h3><i data-lucide="clipboard-list" style="color: #d946ef;"></i></div>
+          <div><h2 id="repTotalTasks">0</h2><p class="report-card-subtext" id="repTasksPeriod">0 tasks total</p></div>
+        </div>
+        <div class="report-card">
+          <div class="report-card-header"><h3>Completion Rate</h3><i data-lucide="trending-up" style="color: #10b981;"></i></div>
+          <div><h2 id="repCompletionRate">0%</h2><p class="report-card-subtext" id="repCompletionText">0 of 0 tasks completed</p></div>
+        </div>
+        <div class="report-card">
+          <div class="report-card-header"><h3>Study Sessions</h3><i data-lucide="calendar" style="color: #f59e0b;"></i></div>
+          <div><h2 id="repTotalSessions">0</h2><p class="report-card-subtext" id="repSessionsPeriod">0 sessions</p></div>
+        </div>
+      </div>
+
+      <!-- 2 Charts using correct CSS Grid classes -->
+      <div class="charts-grid">
+        <div class="chart-card">
+          <div class="chart-header"><div><h3>Student Activity Trends</h3></div></div>
+          <div class="chart-container"><canvas id="activityTrendChart"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-header"><div><h3>Task Status Distribution</h3></div></div>
+          <div class="chart-container"><canvas id="taskStatusChart"></canvas></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="js/supabase-config.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

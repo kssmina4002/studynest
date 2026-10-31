@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Use — StudyNest</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/landing.css">
+  
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">
+          <i data-lucide="graduation-cap" style="width:24px;height:24px;"></i>
+        </div>
+        <div class="logo-text-wrapper">
+          <span class="logo-name">StudyNest</span>
+          <span class="logo-sub">Your Academic Study Planner</span>
+        </div>
+      </a>
+      
+      <div class="nav-links" id="navLinks">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html#features" class="nav-link">Features</a>
+        <a href="index.html#how-it-works" class="nav-link">How It Works</a>
+        <a href="index.html#faq" class="nav-link">FAQ</a>
+        
+        <div class="nav-actions">
+          <a href="login.html" class="sign-in-link">Sign In</a>
+          <a href="register.html" class="btn btn-primary">Get Started</a>
+        </div>
+      </div>
+      
+      <button class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <section class="legal-page">
+    <div class="container">
+      <div class="legal-header">
+        <h1>Terms of Use</h1>
+        <p>Please review the guidelines for using StudyNest.</p>
+      </div>
+
+      <div class="legal-content">
+        <h2>1. Purpose of StudyNest</h2>
+        <p>StudyNest is a student study-planning and task-tracking system designed to help users organize academic activities, plan study sessions, and monitor their progress.</p>
+
+        <h2>2. User Accounts</h2>
+        <p>By creating an account, you agree to:</p>
+        <ul>
+          <li>Provide accurate and complete account information.</li>
+          <li>Keep your login credentials private and secure.</li>
+          <li>Use only your own account.</li>
+          <li>Notify the responsible team immediately if you discover unauthorized account access.</li>
+        </ul>
+
+        <h2>3. Acceptable Use</h2>
+        <p>You must not:</p>
+        <ul>
+          <li>Attempt to access another student's account or data.</li>
+          <li>Modify or delete another user's information without authorization.</li>
+          <li>Interfere with the website's normal operation or attempt to breach its security.</li>
+          <li>Submit malicious, abusive, or inappropriate content through feedback forms.</li>
+        </ul>
+
+        <h2>4. Student Responsibilities</h2>
+        <p>You are responsible for entering accurate task details, deadlines, and study schedules. StudyNest is a tool to help you organize your work; it does not guarantee academic results, grades, or automatically ensure that deadlines are met.</p>
+
+        <h2>5. Service Availability</h2>
+        <p>StudyNest may occasionally be unavailable for maintenance, updates, or due to technical issues. We do not guarantee uninterrupted, error-free service at all times.</p>
+
+        <h2>6. Account and Data Management</h2>
+        <p>If you wish to close your account and have your data deleted, please contact us via the <a href="contact.html" style="color: var(--primary); text-decoration: none;">Contact & Feedback</a> page. We will process deletion requests in accordance with our data retention policies.</p>
+
+        <h2>7. Changes to These Terms</h2>
+        <p>These terms may be updated as the system develops. The latest revision date will be displayed at the bottom of this page. Continued use of StudyNest after changes constitutes acceptance of the new terms.</p>
+        <p style="margin-top: 40px; font-size: 14px;"><em>Last updated: October 2026</em></p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <div class="logo-icon" style="width: 36px; height: 36px;">
+              <i data-lucide="graduation-cap" style="width:20px;height:20px;"></i>
+            </div>
+            <span class="logo-name" style="font-size: 20px;">StudyNest</span>
+          </a>
+          <p>Your academic study planner for organizing tasks, planning study sessions, and tracking progress.</p>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Product</h4>
+          <div class="footer-links">
+            <a href="index.html#features">Features</a>
+            <a href="index.html#how-it-works">How It Works</a>
+            <a href="index.html#faq">FAQ</a>
+          </div>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Account</h4>
+          <div class="footer-links">
+            <a href="login.html">Sign In</a>
+            <a href="register.html">Create Account</a>
+          </div>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Support</h4>
+          <div class="footer-links">
+            <a href="contact.html">Contact & Feedback</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        &copy; <span id="currentYear"></span> StudyNest. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const hamburger = document.getElementById("hamburger");
+      const navLinks = document.getElementById("navLinks");
+      if (hamburger && navLinks) {
+        hamburger.addEventListener("click", function() {
+          navLinks.classList.toggle("open");
+        });
+      }
+
+      const yearSpan = document.getElementById("currentYear");
+      if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+      }
+
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+    });
+  </script>
+</body>
+</html>
