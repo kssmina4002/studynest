@@ -1,0 +1,14 @@
+
+# Private environment files
+.env
+.env.*
+!.env.example
+
+# Dependencies and temporary files
+node_modules/
+*.log
+.DS_Store
+Thumbs.db
+
+# Private local configuration
+config.local.php
