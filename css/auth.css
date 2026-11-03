@@ -1,6 +1,4 @@
-/* ============================================================
-   StudyNest — Auth Pages (Login / Register)
-   ============================================================ */
+
 
 *,
 *::before,
@@ -36,7 +34,7 @@ body.auth-body {
   overflow-x: hidden;
 }
 
-/* Background Animated Blobs */
+
 body.auth-body::before,
 body.auth-body::after {
   content: '';
@@ -98,7 +96,7 @@ body.auth-body::after {
   }
 }
 
-/* Left Side - Visual */
+
 .auth-visual {
   flex: 1;
   border-radius: 24px;
@@ -176,7 +174,7 @@ body.auth-body::after {
   margin-right: auto;
 }
 
-/* Right Side - Form */
+
 .auth-form-side {
   flex: 1.1;
   display: flex;
@@ -186,15 +184,13 @@ body.auth-body::after {
   position: relative;
 }
 
-/* ============================================================
-   CENTERED AUTH CARD
-   ============================================================ */
+
 .auth-card {
   width: 100%;
   max-width: 400px;
   margin-left: auto;
   margin-right: auto;
-  text-align: center; /* This centers the logo, h1, and subtitle */
+  text-align: center; 
 }
 
 .auth-card .logo-icon {
@@ -205,7 +201,7 @@ body.auth-body::after {
   display: grid;
   place-items: center;
   color: #ffffff;
-  margin: 0 auto 24px auto; /* 0 auto centers it horizontally */
+  margin: 0 auto 24px auto; 
   box-shadow: 0 8px 25px rgba(217, 70, 239, 0.3);
 }
 
@@ -228,12 +224,12 @@ body.auth-body::after {
   text-align: center;
 }
 
-/* Forms */
+
 .auth-card form {
   width: 100%;
   display: flex;
   flex-direction: column;
-  text-align: left; /* Resets text alignment back to left for the inputs */
+  text-align: left; 
 }
 
 .field {
@@ -327,7 +323,7 @@ body.auth-body::after {
   color: #ffffff;
 }
 
-/* Custom Checkbox & Options */
+
 .form-options {
   display: flex;
   justify-content: space-between;
@@ -433,7 +429,7 @@ body.auth-body::after {
   cursor: not-allowed;
 }
 
-/* Footer */
+
 .auth-foot {
   text-align: center;
   font-size: 14px;
@@ -469,7 +465,7 @@ body.auth-body::after {
   color: #ffffff;
 }
 
-/* Errors */
+
 .field-error {
   display: block;
   color: #ef4444;
@@ -493,7 +489,7 @@ body.auth-body::after {
   font-weight: 500;
 }
 
-/* Responsive */
+
 @media (max-width: 900px) {
   .auth-wrapper {
     flex-direction: column;

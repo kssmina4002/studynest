@@ -11,10 +11,10 @@
 </head>
 <body>
 
-  <!-- MOBILE OVERLAY -->
+  <
   <div class="mobile-overlay" id="mobileOverlay"></div>
 
-  <!-- SIDEBAR -->
+  
   <aside class="sidebar" id="sidebar">
     <div class="brand">
       <div class="brand-icon"><i data-lucide="graduation-cap" class="icon" style="color:#fff;"></i></div>
@@ -38,7 +38,7 @@
     </div>
   </aside>
 
-  <!-- MAIN -->
+  
   <div class="main">
     <header class="topbar">
       <button class="menu-btn" id="menuBtn"><i data-lucide="menu" class="icon"></i></button>
@@ -54,7 +54,7 @@
 
     <section class="page active">
 
-      <!-- SUMMARY -->
+      
       <div class="top-summary-grid" style="grid-template-columns: repeat(3, 1fr);">
         <div class="top-summary-card">
           <div>
@@ -85,7 +85,7 @@
         </div>
       </div>
 
-      <!-- TOOLBAR -->
+      
       <div class="toolbar">
         <div class="search-filter-row">
           <div class="search-wrap">
@@ -97,7 +97,7 @@
         <div class="filter-row">
           <select id="filterStatus" class="filter-select">
             <option value="All">All Statuses</option>
-            <option value="Not Started">Not Started</option>
+            <option value="Pending">Pending</option>
             <option value="In Progress">In Progress</option>
             <option value="Completed">Completed</option>
             <option value="Overdue">Overdue</option>
@@ -111,19 +111,17 @@
           <select id="filterSubject" class="filter-select">
             <option value="All">All Subjects</option>
           </select>
+          <!-- UPDATED: Filter types to match database -->
           <select id="filterType" class="filter-select">
             <option value="All">All Types</option>
             <option value="Assignment">Assignment</option>
             <option value="Project">Project</option>
-            <option value="Quiz">Quiz</option>
-            <option value="Exam">Exam</option>
-            <option value="Reading">Reading</option>
-            <option value="Research">Research</option>
+            <option value="Examination">Examination</option>
           </select>
         </div>
       </div>
 
-      <!-- TABLE -->
+      
       <div class="card" style="padding: 32px;">
         <div class="card-head" style="display: flex; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 12px;">
           <h3 style="margin: 0; color: #fff;">Task List</h3>
@@ -150,7 +148,7 @@
     </section>
   </div>
 
-  <!-- ADD/EDIT TASK MODAL -->
+  
   <div class="modal-backdrop" id="taskModal">
     <div class="modal" style="max-width: 640px;">
       <div class="modal-head">
@@ -174,13 +172,11 @@
           </div>
           <div class="field">
             <label>Task Type *</label>
+            <!-- UPDATED: Added exact database values -->
             <select name="type" id="taskType">
               <option value="Assignment">Assignment</option>
               <option value="Project">Project</option>
-              <option value="Quiz">Quiz</option>
-              <option value="Exam">Exam</option>
-              <option value="Reading">Reading</option>
-              <option value="Research">Research</option>
+              <option value="Examination">Examination</option>
             </select>
           </div>
         </div>
@@ -213,7 +209,7 @@
           <div class="field">
             <label>Status</label>
             <select name="status" id="taskStatus">
-              <option selected>Not Started</option>
+              <option value="Pending" selected>Pending</option>
               <option>In Progress</option>
               <option>Completed</option>
             </select>
@@ -229,7 +225,7 @@
           </div>
         </div>
 
-        <!-- EXAM FIELDS -->
+        
         <div id="examFields" style="display:none;">
           <div class="field">
             <label>Exam Topics</label>
@@ -241,7 +237,7 @@
           </div>
         </div>
 
-        <!-- SUBTASKS -->
+        
         <div class="field">
           <label>Subtasks / Checklist</label>
           <div class="subtask-list" id="subtaskList"></div>
@@ -264,7 +260,7 @@
     </div>
   </div>
 
-  <!-- DELETE CONFIRM MODAL -->
+  
   <div class="modal-backdrop" id="deleteModal">
     <div class="modal" style="max-width: 420px;">
       <div class="modal-head">
@@ -285,7 +281,7 @@
 
   <script src="js/supabase-config.js"></script>
   <script src="js/preview.js"></script>
-  <script src="js/tasks.js"></script>
+  <script src="js/tasks.js?v=2"></script>
   <script>if (window.lucide) lucide.createIcons();</script>
 </body>
 </html>

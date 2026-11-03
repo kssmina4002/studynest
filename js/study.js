@@ -1,12 +1,10 @@
-// ==========================================
-// STUDY TIMER — StudyNest (Debugged Dropdown)
-// ==========================================
+
 
 (function () {
   const getEl = (s) => document.querySelector(s);
   const getAll = (s) => document.querySelectorAll(s);
 
-  // ---------- State ----------
+  
   let totalSeconds = 25 * 60;
   let remaining = totalSeconds;
   let timerId = null;
@@ -17,7 +15,7 @@
   let lastSessionId = null;
   let selectedRating = 0;
 
-  // ---------- Elements ----------
+  
   const display = getEl("#timerDisplay");
   const label = getEl("#timerLabel");
   const startBtn = getEl("#startBtn");
@@ -30,7 +28,7 @@
   const saveRatingBtn = getEl("#saveRatingBtn");
   const skipRatingBtn = getEl("#skipRatingBtn");
 
-  // ---------- Helpers ----------
+  
   const fmt = (sec) => {
     const m = Math.floor(sec / 60);
     const s = sec % 60;
@@ -58,7 +56,7 @@
       : "Study Timer — StudyNest";
   };
 
-  // ---------- Mobile sidebar ----------
+  
   const menuBtn = getEl("#menuBtn");
   const overlay = getEl("#mobileOverlay");
   const sidebar = getEl("#sidebar");
@@ -73,7 +71,7 @@
     });
   }
 
-  // ---------- Timer control ----------
+  
   function stop() {
     isRunning = false;
     if (timerId) {
@@ -105,7 +103,7 @@
     }, 1000);
   }
 
-  // ---------- Complete ----------
+  
   async function complete() {
     stop();
     if (startBtn) startBtn.disabled = true;
@@ -182,7 +180,7 @@
     }
   }
 
-  // ---------- Rating UI ----------
+  
   function showRatingUI() {
     if (!focusRatingBox) return;
     focusRatingBox.classList.add("show");
@@ -241,7 +239,7 @@
     skipRatingBtn.addEventListener("click", () => hideRatingUI());
   }
 
-  // ---------- Load history ----------
+  
   async function loadHistory() {
     if (!user || !historyList) return;
 
@@ -280,7 +278,7 @@
     }
   }
 
-  // ---------- Load subjects dropdown ----------
+  
   async function loadDropdowns() {
     if (!user) return;
 
@@ -323,7 +321,7 @@
     }
   }
 
-  // ---------- Event listeners ----------
+  
   if (startBtn) startBtn.addEventListener("click", start);
   if (pauseBtn) pauseBtn.addEventListener("click", () => { stop(); if (label) label.textContent = "Paused"; });
   if (resetBtn) resetBtn.addEventListener("click", () => {
@@ -363,7 +361,7 @@
     });
   }
 
-  // ---------- Boot ----------
+  
   (async function () {
     try {
       user = await window.studyNestPreview.getUser();
@@ -372,10 +370,10 @@
         return;
       }
       
-      // Load history first
+      
       loadHistory();
       
-      // Wait a tiny bit to ensure DOM is ready, then load dropdowns
+      
       setTimeout(loadDropdowns, 100);
       
     } catch (err) {

@@ -1,7 +1,4 @@
-// ==========================================
-// PROFILE PAGE — StudyNest (Full)
-// Edit name, goal hours, password, avatar
-// ==========================================
+
 
 (function () {
   const getEl = (s) => document.querySelector(s);
@@ -22,7 +19,7 @@
       ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])
     );
 
-  // ---------- Mobile sidebar ----------
+  
   const menuBtn = getEl("#menuBtn");
   const overlay = getEl("#mobileOverlay");
   const sidebar = getEl("#sidebar");
@@ -37,7 +34,7 @@
     });
   }
 
-  // ---------- Load profile ----------
+  
   async function loadProfile() {
     user = await window.studyNestPreview.getUser();
     if (!user) {
@@ -48,14 +45,14 @@
     const name =
       user.user_metadata?.full_name || user.email.split("@")[0];
 
-    // Fill header
+    
     getEl("#profileName").textContent = name;
     getEl("#profileEmail").textContent = user.email;
     getEl("#profileEmailInput").value = user.email;
     getEl("#profileId").value = user.id;
     getEl("#profileNameInput").value = name;
 
-    // Avatar
+    
     const avatarUrl = user.user_metadata?.avatar_url;
     if (avatarUrl) {
       getEl("#profileAvatar").innerHTML = `<img src="${avatarUrl}" alt="Avatar" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;
@@ -63,7 +60,7 @@
       getEl("#profileAvatar").textContent = name.charAt(0).toUpperCase();
     }
 
-    // Load profile row for goal hours
+    
     if (!window.studyNestPreview.isPreviewUser(user)) {
       try {
         const { data, error } = await supabaseClient
@@ -90,7 +87,7 @@
     }
   }
 
-  // ---------- Save profile ----------
+  
   getEl("#profileForm").addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -113,13 +110,13 @@
     btn.disabled = true;
 
     try {
-      // 1) Update auth metadata
+      
       const { error: authErr } = await supabaseClient.auth.updateUser({
         data: { full_name: newName },
       });
       if (authErr) throw authErr;
 
-      // 2) Update profiles table (upsert)
+      
       const { error: profErr } = await supabaseClient.from("profiles").upsert({
         id: user.id,
         full_name: newName,
@@ -128,7 +125,7 @@
       });
       if (profErr) console.warn("Profile table update:", profErr.message);
 
-      // Update header
+      
       getEl("#profileName").textContent = newName;
       if (!user.user_metadata?.avatar_url) {
         getEl("#profileAvatar").textContent = newName.charAt(0).toUpperCase();
@@ -144,7 +141,7 @@
     }
   });
 
-  // ---------- Change password ----------
+  
   getEl("#passwordForm").addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -196,7 +193,7 @@
     }
   });
 
-  // ---------- Avatar upload ----------
+  
   const avatarWrap = getEl("#profileAvatarWrap");
   const avatarInput = getEl("#avatarInput");
 
@@ -240,7 +237,7 @@
     });
   }
 
-  // ---------- Logout ----------
+  
   const doLogout = async (e) => {
     if (e) e.preventDefault();
     if (user && !window.studyNestPreview.isPreviewUser(user)) {
@@ -252,7 +249,7 @@
   getEl("#logoutBtn")?.addEventListener("click", doLogout);
   getEl("#logoutBtnDanger")?.addEventListener("click", doLogout);
 
-  // ---------- Boot ----------
+  
   loadProfile();
 
   if (window.lucide) lucide.createIcons();

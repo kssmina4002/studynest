@@ -1,6 +1,4 @@
-// ==========================================
-// STUDYNESS ADMIN — MASTER SYSTEM (PRO V3)
-// ==========================================
+
 
 (function() {
   var currentUser = null;
@@ -12,7 +10,7 @@
   var chartActivityTrend = null;
   var chartTaskStatus = null;
 
-  // 1. UI INITIALIZATION & CLICK LOGIC
+  
   function initUI() {
     // Fix Date
     var currentDate = document.getElementById("currentDate");
@@ -22,24 +20,23 @@
       currentDate.textContent = dateObj.toLocaleDateString('en-US', options);
     }
 
-    // --- FIXED DROPDOWN LOGIC ---
+    
     document.addEventListener("click", function(e) {
       var avatarWrapper = e.target.closest("#avatarWrapper");
       var profileMenu = document.getElementById("profileMenu");
       
-      // 1. Toggle Dropdown if Avatar is clicked
+     
       if (avatarWrapper && profileMenu) {
         profileMenu.classList.toggle("show");
         return; // Stop here so it doesn't immediately close
       }
 
-      // 2. If clicking a link inside the dropdown, DO NOTHING. 
-      // Let the browser naturally navigate to the href (Profile/Logout).
+      
       if (e.target.closest(".dropdown-item")) {
         return; 
       }
 
-      // 3. If clicking anywhere else, close the dropdown
+      
       if (profileMenu && profileMenu.classList.contains("show")) {
         profileMenu.classList.remove("show");
       }
@@ -73,7 +70,7 @@
       renderFeedbackPage();
     });
 
-    // Setup Logout click specifically for the sidebar logout button
+    
     document.addEventListener("click", function(e) {
       if (e.target.closest("#logoutBtn")) {
         e.preventDefault(); // Prevent default only for this specific button
@@ -90,7 +87,7 @@
     }, 100);
   }
 
-  // 2. AUTH & DATA FETCHING
+  
   async function initAuth() {
     try {
       var response = await supabaseClient.auth.getSession();
@@ -112,7 +109,7 @@
         name = currentUser.user_metadata.full_name;
       }
 
-      // Update Avatar Name
+      
       var userAvatar = document.getElementById("userAvatar");
       var dropdownName = document.getElementById("dropdownName");
       var dropdownEmail = document.getElementById("dropdownEmail");
@@ -162,7 +159,7 @@
     }
   }
 
-  // 3. ROUTING
+  
   function routePage() {
     var path = window.location.pathname;
 

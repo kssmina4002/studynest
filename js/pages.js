@@ -1,7 +1,4 @@
-// ==========================================
-// INNER PAGES — StudyNest (Full)
-// Planner · Calendar · Insights
-// ==========================================
+
 
 document.addEventListener("DOMContentLoaded", function () {
   const path = window.location.pathname;
@@ -46,7 +43,6 @@ async function getSession() {
   }
 }
 
-// ---------- shared helpers ----------
 const SN_esc = (s) =>
   String(s || "").replace(/[&<>"']/g, (c) =>
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])
@@ -74,9 +70,7 @@ const SN_minutesBetween = (s, e) => {
   return eh * 60 + em - (sh * 60 + sm);
 };
 
-// ==========================================
-// PLANNER
-// ==========================================
+
 async function initPlanner() {
   const user = await getSession();
   if (!user) return (window.location.href = "login.html");
@@ -595,7 +589,7 @@ async function initPlanner() {
     }
   }
 
-  // Wire events
+  
   getEl("#addSessionBtn")?.addEventListener("click", openFormForAdd);
   getEl("#prevWeek")?.addEventListener("click", () => {
     currentDate = SN_addDays(currentDate, -7);
@@ -639,9 +633,7 @@ async function initPlanner() {
   await loadSessions();
 }
 
-// ==========================================
-// CALENDAR
-// ==========================================
+
 async function initCalendar() {
   const user = await getSession();
   if (!user) return (window.location.href = "login.html");
@@ -824,9 +816,7 @@ async function initCalendar() {
   render();
 }
 
-// ==========================================
-// INSIGHTS / PROGRESS
-// ==========================================
+
 async function initProgress() {
   const user = await getSession();
   if (!user) return (window.location.href = "login.html");
@@ -930,15 +920,13 @@ async function initProgress() {
     }
   }
 
-  // ---------- Study Hours Chart (last 7 days) ----------
+  
   renderHoursChart();
 
-  // ---------- Weekly Comparison ----------
+  
   renderWeeklyComparison();
 
-  // ============================================================
-  // Study hours by day (last 7 days)
-  // ============================================================
+
   function renderHoursChart() {
     const chart = getEl("#hoursChart");
     if (!chart) return;
@@ -975,9 +963,7 @@ async function initProgress() {
       .join("");
   }
 
-  // ============================================================
-  // Weekly comparison — this week vs last week
-  // ============================================================
+  
   function renderWeeklyComparison() {
     const box = getEl("#weeklyComparisonBox");
     if (!box) return;

@@ -1,6 +1,4 @@
-/* ============================================================
-   StudyNest — Landing Page Styles (Dark Theme)
-   ============================================================ */
+
 
 :root {
   --bg:            #0a0514;
@@ -79,7 +77,7 @@ button {
   padding: 0 32px;
 }
 
-/* ---------- Buttons ---------- */
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -126,7 +124,7 @@ button {
   color: var(--primary);
 }
 
-/* ---------- Navbar ---------- */
+
 .navbar {
   position: sticky;
   top: 0;
@@ -223,7 +221,7 @@ button {
   transition: .3s;
 }
 
-/* ---------- Hero ---------- */
+
 .hero { padding: 100px 0 120px; }
 
 .hero-grid {
@@ -265,7 +263,7 @@ button {
   font-weight: 500;
 }
 
-/* ---------- Preview Window ---------- */
+
 .preview-wrap { position: relative; }
 
 .preview-window {
@@ -471,7 +469,7 @@ button {
   box-shadow: var(--shadow), 0 0 20px rgba(217, 70, 239, 0.4);
 }
 
-/* ---------- Sections ---------- */
+
 .section { padding: 120px 0; }
 
 .section-head {
@@ -502,7 +500,7 @@ button {
   margin-bottom: 20px;
 }
 
-/* ---------- Features ---------- */
+
 .features { background: rgba(0, 0, 0, 0.2); }
 
 .feature-grid {
@@ -545,7 +543,7 @@ button {
   line-height: 1.6;
 }
 
-/* ---------- Steps ---------- */
+
 .steps-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -592,7 +590,7 @@ button {
 
 .center-btn { text-align: center; }
 
-/* ---------- Big Dashboard Preview ---------- */
+
 .dash-section { background: rgba(0, 0, 0, 0.2); }
 
 .big-dash {
@@ -886,7 +884,7 @@ button {
   font-weight: 500;
 }
 
-/* ---------- About ---------- */
+
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -961,7 +959,7 @@ button {
   box-shadow: 0 0 15px rgba(217, 70, 239, 0.4);
 }
 
-/* ---------- CTA ---------- */
+
 .cta-section { padding: 0 0 120px; }
 
 .cta-box {
@@ -1012,7 +1010,7 @@ button {
   border-radius: 16px;
 }
 
-/* ---------- Footer ---------- */
+
 .footer {
   background: #06030c;
   border-top: 1px solid var(--border);
@@ -1070,7 +1068,7 @@ button {
   font-weight: 500;
 }
 
-/* ---------- Responsive ---------- */
+
 @media (max-width: 1024px) {
   .hero-grid {
     grid-template-columns: 1fr;

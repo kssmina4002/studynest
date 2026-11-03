@@ -1,6 +1,4 @@
-/* ============================================================
-   StudyNest — Inner Pages Styles (Dark Theme)
-   ============================================================ */
+
 
 /* --- Toolbar / Search (Tasks Page) --- */
 .toolbar { 
@@ -77,12 +75,9 @@
   border-color: var(--primary); 
 }
 
-/* ============================================================
-   StudyNest — Inner Pages
-   This file controls the Calendar Grid and the Weekly Planner.
-   ============================================================ */
 
-/* --- Calendar Page --- */
+
+
 .calendar-wrapper {
   background-color: var(--bg-card);
   border: 1px solid var(--border);
@@ -189,7 +184,7 @@
   border-left: 3px solid #10b981;
 }
 
-/* --- Planner Page --- */
+
 .planner-wrapper {
   background-color: var(--bg-card);
   border: 1px solid var(--border);

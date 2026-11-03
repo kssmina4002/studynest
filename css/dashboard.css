@@ -1,6 +1,4 @@
-/* ============================================================
-   StudyNest — Master Stylesheet (Complete)
-   ============================================================ */
+
 
 *,
 *::before,
@@ -66,9 +64,7 @@ svg.lucide {
   height: 16px;
 }
 
-/* ============================================================
-   SIDEBAR
-   ============================================================ */
+
 .sidebar {
   width: 240px;
   background-color: var(--bg-sidebar);
@@ -168,9 +164,7 @@ svg.lucide {
   background-color: rgba(239, 68, 68, 0.1);
 }
 
-/* ============================================================
-   MAIN + TOPBAR
-   ============================================================ */
+
 .main {
   flex: 1;
   display: flex;
@@ -244,7 +238,7 @@ svg.lucide {
   object-fit: cover;
 }
 
-/* Dropdown */
+
 .dropdown-menu {
   display: none;
   position: absolute;
@@ -303,9 +297,7 @@ svg.lucide {
   color: var(--status-overdue);
 }
 
-/* ============================================================
-   PAGE LAYOUT
-   ============================================================ */
+
 .page {
   display: none;
   padding: 32px;
@@ -317,9 +309,7 @@ svg.lucide {
   display: block;
 }
 
-/* ============================================================
-   CARDS & GRIDS
-   ============================================================ */
+
 .card {
   background-color: var(--bg-card);
   border: 1px solid var(--border);
@@ -400,7 +390,7 @@ svg.lucide {
   transform: scale(1.05);
 }
 
-/* Summary */
+
 .top-summary-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -446,7 +436,7 @@ svg.lucide {
   flex-shrink: 0;
 }
 
-/* Subject cards */
+
 .subject-progress-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -521,7 +511,7 @@ svg.lucide {
   margin: 0;
 }
 
-/* Section titles */
+
 .section-title-row {
   display: flex;
   justify-content: space-between;
@@ -556,7 +546,7 @@ svg.lucide {
   font-weight: 700;
 }
 
-/* Activity cards */
+
 .activity-cards-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -661,7 +651,7 @@ svg.lucide {
   color: var(--primary);
 }
 
-/* ---------- Deadlines ---------- */
+
 #upcomingDeadlinesList {
   padding: 0;
 }
@@ -716,7 +706,7 @@ svg.lucide {
   font-weight: 600;
 }
 
-/* ---------- Quick tasks ---------- */
+
 .quick-task-row {
   display: flex;
   align-items: center;
@@ -759,7 +749,7 @@ svg.lucide {
   color: var(--text-muted);
 }
 
-/* ---------- Weekly grid ---------- */
+
 .weekly-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -822,7 +812,7 @@ svg.lucide {
   font-weight: 700;
 }
 
-/* ---------- Goals ---------- */
+
 .goal-row {
   display: flex;
   align-items: center;
@@ -879,7 +869,6 @@ svg.lucide {
   margin-left: auto;
 }
 
-/* ---------- Reminders ---------- */
 #remindersBox {
   padding: 8px 0;
 }
@@ -906,7 +895,7 @@ svg.lucide {
   height: 20px;
 }
 
-/* ---------- Recent sessions ---------- */
+
 .recent-session-row {
   display: flex;
   justify-content: space-between;
@@ -940,7 +929,7 @@ svg.lucide {
   white-space: nowrap;
 }
 
-/* ---------- Weekly review ---------- */
+
 .review-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -995,7 +984,7 @@ svg.lucide {
   background: rgba(16, 185, 129, 0.08);
 }
 
-/* ---------- Priority badges ---------- */
+
 .priority-badge {
   font-size: 11px;
   font-weight: 700;
@@ -1019,7 +1008,7 @@ svg.lucide {
   color: var(--text-muted);
 }
 
-/* ---------- Status ---------- */
+
 .status {
   font-size: 12px;
   font-weight: 700;
@@ -1049,7 +1038,7 @@ svg.lucide {
   color: var(--status-overdue);
 }
 
-/* ---------- Empty states ---------- */
+
 .empty-state {
   display: flex;
   flex-direction: column;
@@ -1077,9 +1066,7 @@ svg.lucide {
   margin-top: 8px;
 }
 
-/* ============================================================
-   TOOLBAR & TABLES
-   ============================================================ */
+
 .toolbar {
   padding: 24px;
   background-color: var(--bg-card);
@@ -1228,9 +1215,7 @@ svg.lucide {
   color: var(--status-overdue);
 }
 
-/* ============================================================
-   PROGRESS / INSIGHTS
-   ============================================================ */
+
 .stat-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -1373,10 +1358,7 @@ svg.lucide {
   margin-bottom: 16px;
   font-size: 14px;}
 
-  /* ============================================================
-   PART 2 — Progress bars, buttons, forms, modals, responsive
-   Append this after the last rule in PART 1
-   ============================================================ */
+
 
 .bar-label {
   font-weight: 600;
@@ -1402,9 +1384,7 @@ svg.lucide {
   color: #fff;
 }
 
-/* ============================================================
-   BUTTONS
-   ============================================================ */
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -1464,9 +1444,7 @@ svg.lucide {
   border-radius: 8px;
 }
 
-/* ============================================================
-   FORMS
-   ============================================================ */
+
 .field {
   margin-bottom: 16px;
 }
@@ -1532,9 +1510,7 @@ svg.lucide {
   gap: 16px;
 }
 
-/* ============================================================
-   MODALS
-   ============================================================ */
+
 .modal-backdrop {
   position: fixed;
   inset: 0;
@@ -1608,9 +1584,7 @@ svg.lucide {
   color: var(--status-overdue);
 }
 
-/* ============================================================
-   TOAST
-   ============================================================ */
+
 .toast {
   position: fixed;
   bottom: 24px;
@@ -1637,9 +1611,7 @@ svg.lucide {
   opacity: 1;
 }
 
-/* ============================================================
-   MOBILE NAV
-   ============================================================ */
+
 .menu-btn {
   display: none;
   background: transparent;
@@ -1671,9 +1643,7 @@ svg.lucide {
   display: block;
 }
 
-/* ============================================================
-   SUBJECTS PAGE (subjects.html)
-   ============================================================ */
+
 .subjects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -1764,9 +1734,7 @@ svg.lucide {
   margin-top: 12px;
 }
 
-/* ============================================================
-   SUBTASKS (tasks.html modal)
-   ============================================================ */
+
 .subtask-list {
   display: flex;
   flex-direction: column;
@@ -1841,7 +1809,7 @@ svg.lucide {
   border-color: var(--primary);
 }
 
-/* Exam countdown badge */
+
 .exam-countdown {
   display: inline-block;
   padding: 4px 10px;
@@ -1853,7 +1821,7 @@ svg.lucide {
   margin-left: 8px;
 }
 
-/* Exam readiness bar */
+
 .readiness-bar {
   height: 8px;
   background: rgba(255, 255, 255, 0.05);
@@ -1869,9 +1837,7 @@ svg.lucide {
   transition: width 0.4s ease;
 }
 
-/* ============================================================
-   FOCUS RATING (study.html)
-   ============================================================ */
+
 .focus-rating {
   display: flex;
   justify-content: center;
@@ -1906,9 +1872,7 @@ svg.lucide {
   box-shadow: 0 6px 20px rgba(217, 70, 239, 0.4);
 }
 
-/* ============================================================
-   PLANNER — TASK LINK BADGE
-   ============================================================ */
+
 .planner-task-link {
   display: inline-flex;
   align-items: center;
@@ -1921,9 +1885,7 @@ svg.lucide {
   font-weight: 700;
 }
 
-/* ============================================================
-   CALENDAR — DAY MODAL
-   ============================================================ */
+
 .cal-day-detail-list {
   display: flex;
   flex-direction: column;
@@ -1964,7 +1926,7 @@ svg.lucide {
   color: var(--text-muted);
 }
 
-/* Calendar clickable cells */
+
 .cal-cell {
   cursor: pointer;
 }
@@ -1973,9 +1935,7 @@ svg.lucide {
   background: rgba(217, 70, 239, 0.05);
 }
 
-/* ============================================================
-   INSIGHTS — WEEKLY COMPARISON
-   ============================================================ */
+
 .comparison-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -2042,7 +2002,7 @@ svg.lucide {
   font-weight: 800;
 }
 
-/* Study hours by day bar chart */
+
 .hours-chart {
   display: flex;
   align-items: flex-end;
@@ -2090,9 +2050,7 @@ svg.lucide {
   text-transform: uppercase;
 }
 
-/* ============================================================
-   PROFILE PAGE
-   ============================================================ */
+
 .profile-header {
   display: flex;
   align-items: center;
@@ -2136,9 +2094,7 @@ svg.lucide {
   cursor: pointer;
 }
 
-/* ============================================================
-   RESPONSIVE — Mobile
-   ============================================================ */
+
 @media (max-width: 1200px) {
   .top-summary-grid {
     grid-template-columns: repeat(2, 1fr);

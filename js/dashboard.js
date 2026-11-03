@@ -1,8 +1,4 @@
-// ==========================================
-// DASHBOARD — StudyNest (11 sections)
-// Bug-free version — all sections render
-// ==========================================
-
+ 
 let currentUser = null;
 let tasks = [];
 let sessions = [];
@@ -10,8 +6,7 @@ let subjects = [];
 let profile = null;
 
 document.addEventListener("DOMContentLoaded", function () {
-  // ---------- Utility helpers ----------
-  const $ = (s) => document.querySelector(s);
+   const $ = (s) => document.querySelector(s);
   const toISO = (d) =>
     `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(
       d.getDate()
@@ -63,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return t.status || "Not Started";
   };
 
-  // ---------- Mobile sidebar ----------
+  
   const menuBtn = $("#menuBtn");
   const overlay = $("#mobileOverlay");
   const sidebar = $("#sidebar");
@@ -81,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // ---------- Date header ----------
+  
   const dateEl = $("#currentDate");
   if (dateEl) {
     dateEl.textContent = TODAY.toLocaleDateString("en-US", {
@@ -92,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // ---------- Profile menu ----------
+  
   const userAvatar = $("#userAvatar");
   const profileMenu = $("#profileMenu");
 
@@ -106,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (profileMenu) profileMenu.classList.remove("show");
   });
 
-  // ---------- Session ----------
+  
   async function checkSession() {
     try {
       currentUser = await window.studyNestPreview.getUser();
@@ -139,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // ---------- Load all data ----------
+  
   async function loadAll() {
     if (window.studyNestPreview.isPreviewUser(currentUser)) {
       renderAll();
@@ -185,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // ---------- Render all 11 sections ----------
+  
   function renderAll() {
     renderSummary();
     renderTodayPlan();
@@ -200,7 +195,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (window.lucide) lucide.createIcons();
   }
 
-  // ---------- 02 · Summary cards ----------
+  
   function renderSummary() {
     const total = tasks.length;
     const completed = tasks.filter((t) => t.status === "Completed").length;
@@ -216,7 +211,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if ($("#statOverdueTasks")) $("#statOverdueTasks").textContent = overdue;
   }
 
-  // ---------- 03 · Today's Study Plan ----------
+  
   function renderTodayPlan() {
     const grid = $("#todayActivityGrid");
     if (!grid) return;
@@ -285,7 +280,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // ---------- 04 · Upcoming Deadlines & Exams ----------
+  
   function renderUpcomingDeadlines() {
     const list = $("#upcomingDeadlinesList");
     if (!list) return;
@@ -330,7 +325,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .join("");
   }
 
-  // ---------- 05 · Quick Task List ----------
+  
   function renderQuickTasks() {
     const list = $("#quickTaskList");
     if (!list) return;
@@ -391,12 +386,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // ---------- 06 · Subject Progress ----------
+  
   function renderSubjectProgress() {
     const grid = $("#subjectProgressGrid");
     if (!grid) return;
 
-    // Merge subject names from subjects table AND from tasks
+    
     const names = [
       ...new Set([
         ...subjects.map((s) => s.name).filter(Boolean),
@@ -448,7 +443,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .join("");
   }
 
-  // ---------- 07 · Weekly Study Activity ----------
+  
   function renderWeeklyActivity() {
     const container = $("#weeklyActivityGrid");
     if (!container) return;
@@ -498,12 +493,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // ---------- 08 · Goals & Streak ----------
-  function renderGoals() {
+   function renderGoals() {
     const box = $("#goalsBox");
     if (!box) return;
 
-    // Weekly goal hours (default 8)
+    
     const goalHours = profile?.weekly_goal_hours || 8;
     const weekStart = new Date(TODAY);
     const dow = TODAY.getDay();
@@ -517,8 +511,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const weekHours = weekMinutes / 60;
     const pct = Math.min(100, Math.round((weekHours / goalHours) * 100));
 
-    // Compute streak: consecutive days with at least 1 session
-    const sessionDates = new Set(sessions.map((s) => s.date));
+     const sessionDates = new Set(sessions.map((s) => s.date));
     let streak = 0;
     const cursor = new Date(TODAY);
     while (sessionDates.has(toISO(cursor))) {
@@ -547,7 +540,7 @@ document.addEventListener("DOMContentLoaded", function () {
     `;
   }
 
-  // ---------- 09 · Reminders & Recommendations ----------
+  
   function renderReminders() {
     const box = $("#remindersBox");
     if (!box) return;
@@ -565,7 +558,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
-    // High priority due soon
+    
     const urgentHigh = tasks.filter(
       (t) =>
         t.status !== "Completed" &&
@@ -583,7 +576,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
-    // No session today but pending tasks
+    
     const todaySessionCount = sessions.filter(
       (s) => s.date === TODAY_ISO
     ).length;
@@ -597,7 +590,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
-    // Recommended next task
+    
     const candidates = tasks
       .filter((t) => t.status !== "Completed" && t.due)
       .sort((a, b) => {
@@ -641,7 +634,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .join("");
   }
 
-  // ---------- 10 · Recent Study Sessions ----------
+  
   function renderRecentSessions() {
     const list = $("#recentSessionsList");
     if (!list) return;
@@ -678,7 +671,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .join("");
   }
 
-  // ---------- 11 · Weekly Review ----------
+  
   function renderWeeklyReview() {
     const box = $("#weeklyReviewBox");
     if (!box) return;
@@ -736,7 +729,7 @@ document.addEventListener("DOMContentLoaded", function () {
     `;
   }
 
-  // ---------- Logout ----------
+  
   const doLogout = async (e) => {
     if (e) e.preventDefault();
     if (!window.studyNestPreview.isPreviewUser(currentUser)) {
@@ -751,6 +744,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const dropdownLogout = $("#dropdownLogout");
   if (dropdownLogout) dropdownLogout.addEventListener("click", doLogout);
 
-  // ---------- Start ----------
+  
   checkSession();
 });

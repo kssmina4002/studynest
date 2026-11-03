@@ -1,7 +1,4 @@
-// ==========================================
-// SUBJECTS PAGE — StudyNest (Full)
-// CRUD for subjects with colors, progress, details
-// ==========================================
+
 
 let currentUser = null;
 let subjects = [];
@@ -79,7 +76,7 @@ async function initSubjectsPage() {
     return eh * 60 + em - (sh * 60 + sm);
   };
 
-  // ---------- Mobile sidebar ----------
+  
   const menuBtn = getEl("#menuBtn");
   const overlay = getEl("#mobileOverlay");
   const sidebar = getEl("#sidebar");
@@ -92,14 +89,14 @@ async function initSubjectsPage() {
     overlay.classList.remove("show");
   });
 
-  // ---------- Session ----------
+  
   currentUser = await window.studyNestPreview.getUser();
   if (!currentUser) {
     window.location.href = "login.html";
     return;
   }
 
-  // ---------- Load data ----------
+  
   async function loadData() {
     if (window.studyNestPreview.isPreviewUser(currentUser)) {
       subjects = [];
@@ -133,7 +130,7 @@ async function initSubjectsPage() {
     }
   }
 
-  // ---------- Render grid ----------
+  
   function render() {
     const grid = getEl("#subjectsGrid");
     if (!grid) return;
@@ -231,7 +228,7 @@ async function initSubjectsPage() {
     });
   }
 
-  // ---------- Open form modal ----------
+  
   window.openSubjectModal = function (mode, id) {
     if (window.studyNestPreview.isPreviewUser(currentUser)) {
       window.studyNestPreview.notifyUnavailable();
@@ -264,12 +261,12 @@ async function initSubjectsPage() {
     getEl("#subjectModal").classList.add("open");
   };
 
-  // ---------- Color live update ----------
+  
   getEl("#subjectColor").addEventListener("input", function () {
     getEl("#colorValue").textContent = this.value;
   });
 
-  // ---------- Submit form ----------
+  
   getEl("#subjectForm").addEventListener("submit", async function (e) {
     e.preventDefault();
 
@@ -287,7 +284,7 @@ async function initSubjectsPage() {
       return;
     }
 
-    // Check duplicate name (different id)
+    
     const duplicate = subjects.find(
       (s) => s.name.toLowerCase() === name.toLowerCase() && s.id !== id
     );
@@ -337,7 +334,7 @@ async function initSubjectsPage() {
     }
   });
 
-  // ---------- Detail modal ----------
+  
   function openSubjectDetail(id) {
     const s = subjects.find((x) => x.id === id);
     if (!s) return;
@@ -422,7 +419,7 @@ async function initSubjectsPage() {
     if (window.lucide) lucide.createIcons();
   }
 
-  // ---------- Delete subject ----------
+  
   getEl("#confirmDeleteSubjectBtn").addEventListener("click", async function () {
     if (!subjectToDelete) return;
 
@@ -455,7 +452,7 @@ async function initSubjectsPage() {
     }
   });
 
-  // ---------- Logout ----------
+  
   getEl("#logoutBtn").addEventListener("click", async function (e) {
     e.preventDefault();
     if (!window.studyNestPreview.isPreviewUser(currentUser)) {
@@ -464,6 +461,6 @@ async function initSubjectsPage() {
     window.location.href = "login.html";
   });
 
-  // ---------- Boot ----------
+  
   await loadData();
 }

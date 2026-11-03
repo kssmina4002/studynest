@@ -1,13 +1,10 @@
-// ==========================================
-// TASKS PAGE — StudyNest (Full)
-// Subtasks, exams, recurring, validation
-// ==========================================
+
 
 let currentUser = null;
 let tasks = [];
 let subjects = [];
 let taskToDelete = null;
-let subtasksDraft = []; // in-memory list while editing
+let subtasksDraft = []; 
 
 document.addEventListener("DOMContentLoaded", function () {
   window.closeModal = function (id) {
@@ -65,7 +62,7 @@ async function initTasksPage() {
   const effStatus = (t) => {
     if (t.status === "Completed") return "Completed";
     if (t.due && new Date(t.due + "T23:59:59") < new Date()) return "Overdue";
-    return t.status || "Not Started";
+    return t.status || "Pending";
   };
 
   const statusClass = (s) => {
@@ -92,7 +89,7 @@ async function initTasksPage() {
     t._timer = setTimeout(() => t.classList.remove("show"), 3000);
   };
 
-  // ---------- Mobile sidebar ----------
+  
   const menuBtn = getEl("#menuBtn");
   const overlay = getEl("#mobileOverlay");
   const sidebar = getEl("#sidebar");
@@ -105,14 +102,14 @@ async function initTasksPage() {
     overlay.classList.remove("show");
   });
 
-  // ---------- Session ----------
+  
   currentUser = await window.studyNestPreview.getUser();
   if (!currentUser) {
     window.location.href = "login.html";
     return;
   }
 
-  // ---------- Load data ----------
+  
   async function loadData() {
     if (window.studyNestPreview.isPreviewUser(currentUser)) {
       tasks = [];
@@ -174,7 +171,7 @@ async function initTasksPage() {
       .join("");
   }
 
-  // ---------- Render table ----------
+ 
   function render() {
     const q = (getEl("#taskSearch").value || "").toLowerCase();
     const fStatus = getEl("#filterStatus").value;
@@ -195,7 +192,7 @@ async function initTasksPage() {
       return true;
     });
 
-    // Counters
+    
     getEl("#taskStatTotal").textContent = tasks.length;
 
     let pendingCount = 0;
@@ -213,7 +210,7 @@ async function initTasksPage() {
 
     getEl("#taskCount").textContent = `Showing ${filtered.length} tasks`;
 
-    // Table body
+    
     const tbody = getEl("#taskTableBody");
 
     if (filtered.length === 0) {
@@ -289,7 +286,7 @@ async function initTasksPage() {
     });
   }
 
-  // ---------- Form helpers ----------
+  
   function renderSubtasks() {
     const list = getEl("#subtaskList");
     if (!list) return;
@@ -349,7 +346,7 @@ async function initTasksPage() {
     }
   });
 
-  // Exam field toggle
+  
   getEl("#taskType").addEventListener("change", function () {
     const isExam = this.value === "Exam";
     getEl("#examFields").style.display = isExam ? "block" : "none";
@@ -359,7 +356,7 @@ async function initTasksPage() {
     getEl("#readinessValue").textContent = this.value;
   });
 
-  // ---------- Open modal ----------
+  
   window.openTaskModal = async function (mode, id) {
     if (window.studyNestPreview.isPreviewUser(currentUser)) {
       window.studyNestPreview.notifyUnavailable();
@@ -389,12 +386,13 @@ async function initTasksPage() {
       getEl("#taskDue").value = task.due || "";
       getEl("#taskPriority").value = task.priority || "Medium";
       getEl("#taskEst").value = task.estimated_minutes || "";
-      getEl("#taskStatus").value = task.status || "Not Started";
+      getEl("#taskStatus").value = task.status || "Pending";
       getEl("#taskRecurring").value = task.recurring || "";
       getEl("#taskNotes").value = task.notes || "";
 
-      if ((task.type || "").toLowerCase() === "exam") {
-        getEl("#examFields").style.display = "block";
+
+if ((task.type || "").toLowerCase() === "examination") {
+    getEl("#examFields").style.display = "block";
         getEl("#taskExamTopics").value = task.exam_topics || "";
         getEl("#taskReadiness").value = task.exam_readiness || 0;
         getEl("#readinessValue").textContent = task.exam_readiness || 0;
@@ -402,7 +400,7 @@ async function initTasksPage() {
 
       getEl("#taskModalTitle").textContent = "Edit Task";
 
-      // Load subtasks
+      
       subtasksDraft = [];
       try {
         const { data, error } = await supabaseClient
@@ -427,7 +425,7 @@ async function initTasksPage() {
     getEl("#taskModal").classList.add("open");
   };
 
-  // ---------- Clear filters ----------
+ 
   window.clearFilters = function () {
     getEl("#taskSearch").value = "";
     getEl("#filterStatus").value = "All";
@@ -437,7 +435,7 @@ async function initTasksPage() {
     render();
   };
 
-  // Filter listeners
+  
   ["taskSearch", "filterStatus", "filterPriority", "filterSubject", "filterType"].forEach(
     (id) => {
       const el = getEl("#" + id);
@@ -447,7 +445,7 @@ async function initTasksPage() {
     }
   );
 
-  // ---------- Submit ----------
+  
   getEl("#taskForm").addEventListener("submit", async function (e) {
     e.preventDefault();
 
@@ -480,6 +478,11 @@ async function initTasksPage() {
 
     const subjObj = subjects.find((s) => s.name === subject);
     const subject_id = subjObj ? subjObj.id : null;
+    const selectedStatus = getEl("#taskStatus").value;
+    const status =
+      selectedStatus === "In Progress" || selectedStatus === "Completed"
+        ? selectedStatus
+        : "Pending";
 
     const payload = {
       user_id: currentUser.id,
@@ -490,7 +493,7 @@ async function initTasksPage() {
       description: getEl("#taskDesc").value.trim(),
       due,
       priority: getEl("#taskPriority").value,
-      status: getEl("#taskStatus").value,
+      status,
       estimated_minutes: getEl("#taskEst").value
         ? parseInt(getEl("#taskEst").value, 10)
         : null,
@@ -503,7 +506,7 @@ async function initTasksPage() {
       payload.exam_readiness = parseInt(getEl("#taskReadiness").value, 10) || 0;
     }
 
-    // Auto-set actual_completed_at when marking complete
+   
     if (payload.status === "Completed") {
       payload.actual_completed_at = new Date().toISOString();
     } else {
@@ -535,7 +538,7 @@ async function initTasksPage() {
         taskId = data.id;
       }
 
-      // Sync subtasks: delete all + reinsert (simplest reliable approach)
+      
       if (taskId) {
         await supabaseClient.from("subtasks").delete().eq("task_id", taskId);
         if (subtasksDraft.length > 0) {
@@ -564,7 +567,7 @@ async function initTasksPage() {
     }
   });
 
-  // ---------- Delete ----------
+  
   getEl("#confirmDeleteBtn").addEventListener("click", async function () {
     if (!taskToDelete) return;
 
@@ -597,7 +600,7 @@ async function initTasksPage() {
     }
   });
 
-  // ---------- Logout ----------
+  
   getEl("#logoutBtn").addEventListener("click", async function (e) {
     e.preventDefault();
     if (!window.studyNestPreview.isPreviewUser(currentUser)) {
@@ -606,7 +609,6 @@ async function initTasksPage() {
     window.location.href = "login.html";
   });
 
-  // ---------- Boot ----------
+  
   await loadData();
 }
-

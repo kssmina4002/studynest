@@ -112,7 +112,7 @@
       min-width: 140px;
     }
 
-    /* Updated to 2 columns since Task link is removed */
+    
     .timer-inputs {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -271,7 +271,7 @@
 </head>
 <body>
 
-  <!-- MOBILE OVERLAY -->
+  
   <div class="mobile-overlay" id="mobileOverlay"></div>
 
   <!-- SIDEBAR -->
@@ -302,7 +302,7 @@
     </div>
   </aside>
 
-  <!-- MAIN -->
+  
   <div class="main">
 
     <header class="topbar">
@@ -317,21 +317,21 @@
     <section class="page active">
       <div class="timer-page">
 
-        <!-- TIMER CARD -->
+        
         <div class="timer-card">
 
-          <!-- Mode tabs -->
+          
           <div class="mode-tabs" id="modeTabs">
             <button data-min="25" class="active">Focus (25m)</button>
             <button data-min="5">Short Break (5m)</button>
             <button data-min="15">Long Break (15m)</button>
           </div>
 
-          <!-- Timer display -->
+          
           <div class="timer-display" id="timerDisplay">25:00</div>
           <p class="timer-label" id="timerLabel">Ready to focus</p>
 
-          <!-- Controls -->
+          
           <div class="timer-controls">
             <button class="btn btn-primary" id="startBtn">
               <i data-lucide="play" class="icon"></i> Start
@@ -344,7 +344,7 @@
             </button>
           </div>
 
-          <!-- Inputs (Updated: 2 columns, Task removed) -->
+          
           <div class="timer-inputs">
             <select id="timerSubject">
               <option value="">Select Subject</option>
@@ -356,7 +356,7 @@
             Completed focus sessions are saved to your planner and dashboard automatically.
           </p>
 
-          <!-- Focus rating (hidden until session completes) -->
+          
           <div class="focus-rating-box" id="focusRatingBox">
             <h4>How focused were you?</h4>
             <p>Your rating helps you evaluate your study habits.</p>
@@ -377,7 +377,7 @@
 
         </div>
 
-        <!-- HISTORY -->
+        
         <div class="timer-history">
           <h3>Recent Sessions</h3>
           <div id="historyList">

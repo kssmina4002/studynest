@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Mobile Menu Toggle
+  
   const hamburger = document.getElementById("hamburger");
   const navLinks = document.getElementById("navLinks");
 
@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // FAQ Accordion Logic
+  
   const faqItems = document.querySelectorAll(".faq-item");
   
   faqItems.forEach(item => {
@@ -19,12 +19,12 @@ document.addEventListener("DOMContentLoaded", () => {
       faqItems.forEach(other => {
         if (other !== item) other.classList.remove("active");
       });
-      // Toggle current item
+      
       item.classList.toggle("active");
     });
   });
 
-  // Initialize Lucide Icons
+  
   if (window.lucide) {
     lucide.createIcons();
   }

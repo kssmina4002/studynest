@@ -12,7 +12,7 @@
 </head>
 <body>
 
-  <!-- 1. NAVIGATION BAR -->
+  
   <nav class="navbar">
     <div class="nav-inner">
       <a href="index.html" class="logo">
@@ -45,7 +45,7 @@
     </div>
   </nav>
 
-  <!-- 2. HERO SECTION -->
+  
   <section class="hero">
     <div class="hero-glow"></div>
     <div class="container">
@@ -89,7 +89,7 @@
             </div>
           </div>
 
-          <!-- Hero Mockup -->
+          
           <div class="hero-mockup">
             <div class="mockup-header">
               <div class="mockup-dot red"></div>
@@ -133,7 +133,7 @@
     </div>
   </section>
 
-  <!-- 3. DASHBOARD PREVIEW -->
+  
   <section class="section section-bg-dark">
     <div class="container">
       <div class="section-header">
@@ -213,7 +213,7 @@
     </div>
   </section>
 
-  <!-- 4. QUICK BENEFITS -->
+  
   <section class="section">
     <div class="container">
       <div class="benefits-grid">
@@ -244,7 +244,7 @@
     </div>
   </section>
 
-  <!-- 5. FEATURES -->
+  
   <section class="section section-bg-dark" id="features">
     <div class="container">
       <div class="section-header">
@@ -292,7 +292,7 @@
     </div>
   </section>
 
-  <!-- 6. HOW IT WORKS -->
+  
   <section class="section" id="how-it-works">
     <div class="container">
       <div class="section-header">
@@ -328,7 +328,7 @@
     </div>
   </section>
 
-  <!-- 7. STUDY PLANNING PREVIEW -->
+  
   <section class="section section-bg-dark">
     <div class="container">
       <div class="planner-preview-wrapper">
@@ -380,7 +380,7 @@
     </div>
   </section>
 
-  <!-- 8. WHY CHOOSE STUDYNESS -->
+  
   <section class="section">
     <div class="container">
       <div class="why-grid">
@@ -436,7 +436,7 @@
     </div>
   </section>
 
-  <!-- 9. CHALLENGES (Replacing Testimonials) -->
+  
   <section class="section section-bg-dark">
     <div class="container">
       <div class="section-header">
@@ -463,7 +463,7 @@
     </div>
   </section>
 
-  <!-- 10. FAQ SECTION -->
+  
   <section class="section" id="faq">
     <div class="container">
       <div class="section-header">
@@ -537,7 +537,7 @@
     </div>
   </section>
 
-  <!-- 11. FINAL CALL-TO-ACTION -->
+  
   <section class="cta-section">
     <div class="container">
       <div class="cta-box">
@@ -549,8 +549,8 @@
     </div>
   </section>
 
-  <!-- 12. FOOTER -->
-    <!-- 12. FOOTER -->
+  
+    
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
@@ -599,11 +599,11 @@
     </div>
   </footer>
 
-  <!-- JAVASCRIPT FOR LANDING PAGE INTERACTIVITY -->
+  
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       
-      // 1. Mobile Menu Toggle
+      
       const hamburger = document.getElementById("hamburger");
       const navLinks = document.getElementById("navLinks");
       
@@ -613,14 +613,14 @@
         });
       }
 
-      // 2. FAQ Accordion Logic
+      
       const faqQuestions = document.querySelectorAll(".faq-question");
       
       for (let i = 0; i < faqQuestions.length; i++) {
         faqQuestions[i].addEventListener("click", function() {
           const currentItem = this.parentElement;
           
-          // Close all other open items
+          
           const allItems = document.querySelectorAll(".faq-item");
           for (let j = 0; j < allItems.length; j++) {
             if (allItems[j] !== currentItem) {
@@ -628,18 +628,18 @@
             }
           }
           
-          // Toggle current item
+          
           currentItem.classList.toggle("active");
         });
       }
 
-      // 3. Dynamic Footer Year
+      
       const yearSpan = document.getElementById("currentYear");
       if (yearSpan) {
         yearSpan.textContent = new Date().getFullYear();
       }
 
-      // 4. Initialize Lucide Icons
+      
       if (window.lucide) {
         lucide.createIcons();
       }

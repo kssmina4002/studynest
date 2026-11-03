@@ -1,6 +1,4 @@
-/* ============================================================
-   StudyNest — Dark Theme Homepage (Landing Page)
-   ============================================================ */
+
 
 *,
 *::before,
@@ -54,9 +52,7 @@ a {
   padding: 0 24px;
 }
 
-/* ============================================================
-   BUTTONS
-   ============================================================ */
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -100,9 +96,7 @@ a {
   font-size: 16px;
 }
 
-/* ============================================================
-   NAVIGATION BAR
-   ============================================================ */
+
 .navbar {
   position: fixed;
   top: 0;
@@ -215,9 +209,7 @@ a {
   transition: all 0.3s;
 }
 
-/* ============================================================
-   HERO SECTION
-   ============================================================ */
+
 .hero {
   padding-top: 160px;
   padding-bottom: 100px;
@@ -290,7 +282,7 @@ a {
   font-weight: 500;
 }
 
-/* Hero Mockup (Dark Mode) */
+
 .hero-mockup {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -398,7 +390,7 @@ a {
   box-shadow: 0 0 15px rgba(217, 70, 239, 0.4);
 }
 
-/* Floating Elements (Live Moving) */
+
 .floating-elements {
   position: absolute;
   top: 0;
@@ -461,9 +453,7 @@ a {
   50% { transform: translateY(-15px); }
 }
 
-/* ============================================================
-   SECTIONS (General Dark Theme)
-   ============================================================ */
+
 .section {
   padding: 100px 0;
   border-top: 1px solid var(--border);
@@ -496,9 +486,7 @@ a {
   color: var(--text-muted);
 }
 
-/* ============================================================
-   DASHBOARD PREVIEW SECTION
-   ============================================================ */
+
 .dashboard-preview-large {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -577,9 +565,7 @@ a {
   gap: 20px;
 }
 
-/* ============================================================
-   QUICK BENEFITS
-   ============================================================ */
+
 .benefits-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -622,9 +608,7 @@ a {
   color: var(--text-muted);
 }
 
-/* ============================================================
-   FEATURES SECTION (6 Cards)
-   ============================================================ */
+
 .features-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -667,9 +651,7 @@ a {
   color: var(--text-muted);
 }
 
-/* ============================================================
-   HOW IT WORKS
-   ============================================================ */
+
 .steps-container {
   display: flex;
   justify-content: space-between;
@@ -723,9 +705,7 @@ a {
   color: var(--text-muted);
 }
 
-/* ============================================================
-   PLANNER PREVIEW SECTION
-   ============================================================ */
+
 .planner-preview-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -779,9 +759,7 @@ a {
   border-bottom: none;
 }
 
-/* ============================================================
-   WHY CHOOSE US
-   ============================================================ */
+
 .why-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -865,9 +843,7 @@ a {
   color: var(--text-muted);
 }
 
-/* ============================================================
-   CHALLENGES / TESTIMONIALS
-   ============================================================ */
+
 .challenges-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -892,9 +868,7 @@ a {
   color: var(--text-muted);
 }
 
-/* ============================================================
-   FAQ SECTION
-   ============================================================ */
+
 .faq-container {
   max-width: 800px;
   margin: 0 auto;
@@ -954,9 +928,7 @@ a {
   padding-bottom: 24px;
 }
 
-/* ============================================================
-   FINAL CTA
-   ============================================================ */
+
 .cta-section {
   padding: 100px 0;
 }
@@ -1006,9 +978,7 @@ a {
   z-index: 2;
 }
 
-/* ============================================================
-   FOOTER
-   ============================================================ */
+
 .footer {
   border-top: 1px solid var(--border);
   padding: 80px 0 32px 0;
@@ -1059,9 +1029,7 @@ a {
   font-size: 14px;
 }
 
-/* ============================================================
-   RESPONSIVE DESIGN
-   ============================================================ */
+
 @media (max-width: 1024px) {
   .hero-grid,
   .planner-preview-wrapper,
@@ -1075,7 +1043,7 @@ a {
   }
 
   .floating-elements {
-    display: none; /* Hide floating cards on smaller screens to avoid overlap */
+    display: none; 
   }
 
   .nav-links,
@@ -1164,9 +1132,7 @@ a {
   }
 }
 
-/* ============================================================
-   NEW PAGES: CONTACT, PRIVACY, TERMS
-   ============================================================ */
+
 
 /* Page Layout for Text-heavy pages */
 .legal-page {
@@ -1238,9 +1204,7 @@ a {
   color: #ffffff;
 }
 
-/* ============================================================
-   CONTACT PAGE SPECIFIC
-   ============================================================ */
+
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1.5fr;
@@ -1358,9 +1322,7 @@ a {
   text-align: center;
 }
 
-/* ============================================================
-   UPDATED FOOTER (4 COLUMNS)
-   ============================================================ */
+
 .footer {
   border-top: 1px solid var(--border);
   padding: 80px 0 32px 0;

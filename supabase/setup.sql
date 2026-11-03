@@ -11,6 +11,15 @@ create table if not exists public.tasks (
   created_at timestamptz not null default now()
 );
 
+alter table public.tasks drop constraint if exists tasks_status_check;
+update public.tasks
+set status = 'Pending'
+where status = 'Not Started';
+alter table public.tasks alter column status set default 'Pending';
+alter table public.tasks
+  add constraint tasks_status_check
+  check (status in ('Pending', 'In Progress', 'Completed'));
+
 alter table public.tasks drop constraint if exists tasks_type_check;
 update public.tasks set type = 'Examination' where type = 'Exam';
 alter table public.tasks
@@ -254,5 +263,4 @@ create policy "Users delete their own avatars" on storage.objects
   for delete to authenticated
   using (bucket_id = 'avatars' and (storage.foldername(name))[1] = auth.uid()::text);
 
--- Grant admin access by setting app_metadata.role = 'admin' through a trusted
--- Supabase Dashboard or server-side admin API, never from browser code.
+
