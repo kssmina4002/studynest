@@ -1,11 +1,13 @@
 
 
 document.addEventListener("DOMContentLoaded", function () {
-  const path = window.location.pathname;
+  const path = window.location.pathname.replace(/\/+$/, "");
+  const page = path.slice(path.lastIndexOf("/") + 1);
+  const pageFile = page.includes(".") ? page : `${page}.html`;
 
-  if (path.includes("planner.html")) initPlanner();
-  if (path.includes("calendar.html")) initCalendar();
-  if (path.includes("progress.html")) initProgress();
+  if (pageFile === "planner.html") initPlanner();
+  if (pageFile === "calendar.html") initCalendar();
+  if (pageFile === "progress.html") initProgress();
 
   const logoutBtn = document.getElementById("logoutBtn");
   if (logoutBtn) {
