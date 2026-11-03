@@ -130,9 +130,9 @@
       if (profileAvatar) profileAvatar.textContent = name.charAt(0).toUpperCase();
       if (settingsEmail) settingsEmail.value = currentUser.email || "";
 
-      var currentPath = window.location.pathname;
-      if (currentPath.indexOf("admin-profile.html") !== -1 ||
-          currentPath.indexOf("admin-settings.html") !== -1) {
+      var currentPage = getCurrentPageFile();
+      if (currentPage === "admin-profile.html" ||
+          currentPage === "admin-settings.html") {
         routePage();
         return;
       }
@@ -185,19 +185,25 @@
   }
 
   
-  function routePage() {
-    var path = window.location.pathname;
+  function getCurrentPageFile() {
+    var path = window.location.pathname.replace(/\/+$/, "");
+    var page = path.slice(path.lastIndexOf("/") + 1);
+    return page.indexOf(".") === -1 ? page + ".html" : page;
+  }
 
-    if (path.indexOf("admin-dashboard.html") !== -1) renderDashboard();
-    else if (path.indexOf("admin-reports.html") !== -1) renderReports();
-    else if (path.indexOf("admin-calendar.html") !== -1) renderCalendar();
-    else if (path.indexOf("admin-students.html") !== -1) renderStudentsPage();
-    else if (path.indexOf("admin-tasks.html") !== -1) renderTasksPage();
-    else if (path.indexOf("admin-sessions.html") !== -1) renderSessionsPage();
-    else if (path.indexOf("admin-logs.html") !== -1) renderLogsPage();
-    else if (path.indexOf("admin-feedback.html") !== -1) renderFeedbackPage();
-    else if (path.indexOf("admin-profile.html") !== -1) renderAdminProfile();
-    else if (path.indexOf("admin-settings.html") !== -1) renderAdminSettings();
+  function routePage() {
+    var page = getCurrentPageFile();
+
+    if (page === "admin-dashboard.html") renderDashboard();
+    else if (page === "admin-reports.html") renderReports();
+    else if (page === "admin-calendar.html") renderCalendar();
+    else if (page === "admin-students.html") renderStudentsPage();
+    else if (page === "admin-tasks.html") renderTasksPage();
+    else if (page === "admin-sessions.html") renderSessionsPage();
+    else if (page === "admin-logs.html") renderLogsPage();
+    else if (page === "admin-feedback.html") renderFeedbackPage();
+    else if (page === "admin-profile.html") renderAdminProfile();
+    else if (page === "admin-settings.html") renderAdminSettings();
 
     if (window.lucide) lucide.createIcons();
   }
