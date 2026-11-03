@@ -1322,15 +1322,18 @@ svg.lucide {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
 }
 
 .donut-center strong {
+  display: block;
   font-size: 24px;
   color: #fff;
   font-family: var(--font-head);
 }
 
 .donut-center span {
+  display: block;
   font-size: 11px;
   color: var(--text-muted);
   font-weight: 600;
