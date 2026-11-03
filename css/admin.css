@@ -116,6 +116,17 @@ body {
   border-left-color: var(--status-overdue);
 }
 
+.admin-load-error {
+  margin-bottom: 20px;
+  padding: 14px 16px;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  border-left: 4px solid var(--status-overdue);
+  border-radius: 8px;
+  background: rgba(239, 68, 68, 0.08);
+  color: var(--text-main);
+  overflow-wrap: anywhere;
+}
+
 .sidebar-footer {
   flex-shrink: 0 !important;
   border-top: 1px solid var(--border) !important;

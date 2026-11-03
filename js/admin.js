@@ -144,19 +144,44 @@
         supabaseClient.from("activity_logs").select("*").order("created_at", { ascending: false }).limit(500),
         supabaseClient.rpc("admin_list_students")
       ]);
-      var failedResult = results.find(function(result) { return result.error; });
-      if (failedResult) throw failedResult.error;
-      globalTasks = results[0].data || [];
-      globalSessions = results[1].data || [];
-      globalFeedback = results[2].data || [];
-      globalLogs = results[3].data || [];
-      globalStudents = results[4].data || [];
+      var resourceNames = ["Tasks", "sessions", "feedback", "activity logs", "student list"];
+      var loadErrors = [];
+      results.forEach(function(result, index) {
+        if (result.error) {
+          loadErrors.push(resourceNames[index] + ": " + result.error.message);
+          console.error("Admin " + resourceNames[index] + " load error:", result.error);
+        }
+      });
+      globalTasks = results[0].error ? [] : results[0].data || [];
+      globalSessions = results[1].error ? [] : results[1].data || [];
+      globalFeedback = results[2].error ? [] : results[2].data || [];
+      globalLogs = results[3].error ? [] : results[3].data || [];
+      globalStudents = results[4].error ? [] : results[4].data || [];
       routePage();
       renderCharts();
+      if (loadErrors.length) showAdminLoadError(loadErrors);
     } catch (err) {
       console.error("Admin data error:", err);
-      window.alert("Unable to load admin data: " + err.message);
+      showAdminLoadError(["Unable to load admin data: " + err.message]);
     }
+  }
+
+  function showAdminLoadError(messages) {
+    var page = document.querySelector(".page.active") || document.querySelector(".page");
+    if (!page) return;
+
+    var banner = document.createElement("div");
+    banner.className = "admin-load-error";
+    banner.setAttribute("role", "alert");
+    banner.textContent = "Some admin data could not load. " + messages.join(" | ");
+    page.insertBefore(banner, page.firstChild);
+
+    page.querySelectorAll("tbody").forEach(function(body) {
+      var loadingCell = body.querySelector("td");
+      if (loadingCell && loadingCell.textContent.trim() === "Loading...") {
+        loadingCell.textContent = "Data could not load. See the error above.";
+      }
+    });
   }
 
   
