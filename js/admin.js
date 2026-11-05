@@ -628,11 +628,11 @@
       for (var i = 1; i <= daysInMonth; i++) cells.push({ date: new Date(year, month, i), other: false });
       for (var i = 1; i <= (42 - cells.length); i++) cells.push({ date: new Date(year, month + 1, i), other: true });
 
-      var todayIso = new Date().toISOString().split('T')[0];
+      var todayIso = localDateKey(new Date());
 
       for (var i = 0; i < cells.length; i++) {
         var c = cells[i];
-        var iso = c.date.toISOString().split('T')[0];
+        var iso = localDateKey(c.date);
         var isToday = (iso === todayIso);
         
         var dayTasks = globalTasks.filter(function(t) { return t.due === iso && t.status !== "Completed"; });
