@@ -39,7 +39,7 @@ body {
   color: var(--text-main);
   display: flex;
   zoom: 0.9;
-  height: 111vh;
+  height: 100vh;
   overflow: hidden;
   font-size: 14px;
 }
@@ -171,6 +171,7 @@ svg.lucide {
   flex-direction: column;
   overflow: hidden;
   width: 100%;
+  min-width: 0;
 }
 
 .topbar {
@@ -302,7 +303,8 @@ svg.lucide {
   display: none;
   padding: 32px;
   overflow-y: auto;
-  height: calc(111vh - 78px);
+  flex: 1;
+  min-height: 0;
 }
 
 .page.active {
@@ -2117,10 +2119,15 @@ svg.lucide {
   body {
     zoom: 1;
     height: 100vh;
+    height: 100dvh;
   }
   .page {
-    height: calc(100vh - 70px);
+    height: auto;
     padding: 16px;
+  }
+  .main {
+    height: 100vh;
+    height: 100dvh;
   }
   .sidebar {
     position: fixed;

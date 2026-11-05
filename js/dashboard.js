@@ -67,14 +67,32 @@ document.addEventListener("DOMContentLoaded", function () {
     menuBtn.addEventListener("click", () => {
       sidebar.classList.add("mobile-open");
       overlay.classList.add("show");
+      menuBtn.setAttribute("aria-expanded", "true");
     });
   }
   if (overlay && sidebar) {
     overlay.addEventListener("click", () => {
       sidebar.classList.remove("mobile-open");
       overlay.classList.remove("show");
+      if (menuBtn) menuBtn.setAttribute("aria-expanded", "false");
     });
   }
+  if (sidebar) {
+    sidebar.addEventListener("click", (e) => {
+      if (e.target.closest(".nav-item")) {
+        sidebar.classList.remove("mobile-open");
+        if (overlay) overlay.classList.remove("show");
+        if (menuBtn) menuBtn.setAttribute("aria-expanded", "false");
+      }
+    });
+  }
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && sidebar && sidebar.classList.contains("mobile-open")) {
+      sidebar.classList.remove("mobile-open");
+      if (overlay) overlay.classList.remove("show");
+      if (menuBtn) menuBtn.setAttribute("aria-expanded", "false");
+    }
+  });
 
   
   const dateEl = $("#currentDate");

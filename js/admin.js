@@ -12,6 +12,31 @@
 
   
   function initUI() {
+    var menuBtn = document.getElementById("menuBtn");
+    var sidebar = document.getElementById("sidebar");
+    var mobileOverlay = document.getElementById("mobileOverlay");
+
+    function closeMobileMenu() {
+      if (sidebar) sidebar.classList.remove("mobile-open");
+      if (mobileOverlay) mobileOverlay.classList.remove("show");
+      if (menuBtn) menuBtn.setAttribute("aria-expanded", "false");
+    }
+
+    if (menuBtn && sidebar && mobileOverlay) {
+      menuBtn.addEventListener("click", function() {
+        sidebar.classList.add("mobile-open");
+        mobileOverlay.classList.add("show");
+        menuBtn.setAttribute("aria-expanded", "true");
+      });
+      mobileOverlay.addEventListener("click", closeMobileMenu);
+      sidebar.addEventListener("click", function(e) {
+        if (e.target.closest(".nav-item")) closeMobileMenu();
+      });
+      document.addEventListener("keydown", function(e) {
+        if (e.key === "Escape") closeMobileMenu();
+      });
+    }
+
     // Fix Date
     var currentDate = document.getElementById("currentDate");
     if (currentDate) {
